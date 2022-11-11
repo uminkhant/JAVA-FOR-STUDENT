@@ -17,15 +17,7 @@
 		<role-name>Member</role-name>
 	</security-role>
 
-	<!-- login authentication -->
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/security/login.jsp</form-login-page>
-			<form-error-page>/security/error.jsp</form-error-page>
-		</form-login-config>
 
-	</login-config>
 
 	<!-- security constraint -->
 
@@ -49,4 +41,16 @@
 		</auth-constraint>
 	</security-constraint>
 
+
+	<!-- login authentication -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/security/login.jsp</form-login-page>
+			<form-error-page>/security/error.jsp</form-error-page>
+		</form-login-config>
+
+	</login-config>
+
+	
 </web-app>
