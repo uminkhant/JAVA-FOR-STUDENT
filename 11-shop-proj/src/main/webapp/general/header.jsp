@@ -20,25 +20,19 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/fontawesome.min.css"></link>
 
-<style>
-.txt-color {
-	color: #e2592a;
-}
-.txt-danger{
-	color:#e2592a;
-}
-</style>
+
 <title></title>
 </head>
 <body>
 
-<c:url var="cat_edit" value="/edit_category"></c:url>
-<c:url var="item_edit" value="/edit_item"></c:url>
-<c:url var="sale" value="/sale"></c:url>
+	<c:url var="cat_edit" value="/edit_category"></c:url>
+	<c:url var="item_edit" value="/edit_item"></c:url>
+	<c:url var="sale" value="/sale"></c:url>
+	<c:url var="home" value="/"></c:url>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
 		<div class="container-fluid">
-			<a href="#" class="navbar-brand txt-color">Shop.mm</a>
+			<a href="${home }" class="navbar-brand text-success">Shop.mm</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#shopsupprotcontent"
 				aria-controls="shopsupprotcontent" aria-expanded="false"
@@ -51,20 +45,27 @@
 
 			<div class="collapse navbar-collapse" id="shopsupprotcontent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link txt-color " href="${cat_edit }">Category</a></li>
+					<li class="nav-item"><a class="nav-link text-success "
+						href="${cat_edit }">Category</a></li>
 
-					<li class="nav-item"><a class="nav-link txt-color" href="${item_edit }">Item<span
+					<li class="nav-item"><a class="nav-link text-success"
+						href="${item_edit }">Item<span
 							class=" top-1  translate-middle badge rounded-pill bg-secondary">+99
 
 						</span></a></li>
-					<li class="nav-item"><a class="nav-link txt-color" href="${sale }"><i
-							class="fa fa-shopping-cart"></i>Sale<span
+					<li class="nav-item"><a class="nav-link text-success"
+						href="${sale }"><i class="fa fa-shopping-cart"></i>Sale<span
 							class=" top-1 translate-middle badge rounded-pill bg-secondary">+99
 
 						</span></a></li>
 
 				</ul>
 
+				<form class="d-flex">
+					<input class="form-control me-2" type="search" placeholder="Search"
+						aria-label="Search">
+					<button class=" btn btn-outline-success " type="submit">Search</button>
+				</form>
 			</div>
 
 
