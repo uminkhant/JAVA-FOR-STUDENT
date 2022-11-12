@@ -1,24 +1,27 @@
 package com.jdc.mkt.sevice;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+
+import javax.sql.DataSource;
 
 import com.jdc.mkt.model.Role;
 import com.jdc.mkt.model.User;
 
 public class UserService {
 
-	private static final String URL="jdbc:mysql://localhost:3306/shop_db";
-	private static final String USER="root";
-	private static final String PASS="admin123";
+	private DataSource ds;
+	
+	public UserService(DataSource  ds) {
+		this.ds=ds;
+	}
 	
 	public User checkUser(String name) {
 		
-		String sql="select * from user_tbl where name=?";
+		String sql="select * from member_tbl where login=?";
 		
 		try(
-				Connection con=DriverManager.getConnection(URL,USER,PASS);
+				Connection con=ds.getConnection();
 				PreparedStatement stmt=con.prepareStatement(sql)
 				
 				) {
@@ -30,8 +33,7 @@ public class UserService {
 			
 			while(rs.next()) {
 				User u=new User();
-				u.setId(rs.getInt("id"));
-				u.setName(rs.getString("name"));
+				u.setName(rs.getString("login"));
 				u.setPassword(rs.getString("password"));
 				u.setRole(Role.valueOf(rs.getString("role").toUpperCase()));
 			

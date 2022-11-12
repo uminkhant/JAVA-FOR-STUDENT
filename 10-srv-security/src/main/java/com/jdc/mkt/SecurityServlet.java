@@ -2,9 +2,11 @@ package com.jdc.mkt;
 
 import java.io.IOException;
 
-import com.jdc.mkt.model.User;
+import javax.sql.DataSource;
+
 import com.jdc.mkt.sevice.UserService;
 
+import jakarta.annotation.Resource;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,6 +18,9 @@ public class SecurityServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
+	@Resource(name = "jdbc/test_db")
+	DataSource ds;
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -25,40 +30,31 @@ public class SecurityServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		var user=req.getParameter("user");
-		var pass=req.getParameter("pass");
-		UserService service=new UserService();
+		var user = req.getParameter("user");
+		var pass = req.getParameter("pass");
 		
-		User u=service.checkUser(user);
+		System.out.println(user+"\t"+pass);
 		
 		
+		//UserService service = new UserService(ds);
+
+	//	req.getSession().setAttribute("loginUser", service.checkUser(user));
+		
+		//System.out.println("user : "+service.checkUser(user).getName());
 		
 		switch (req.getServletPath()) {
-		
+
 		case "/logout":
 			req.getSession().invalidate();
 			break;
 		case "/login":
-			
-			if(null!=u) {
-				
-				req.login(user, pass);	
-				System.out.println(u.getName()+"\t"+u.getPassword());
-			
-			}else {
-				System.out.println("There is no user");
-			}
-			
-			
-			var session=req.getSession();
-			session.setAttribute("loginUser", req.getUserPrincipal());
-			session.setAttribute("userName", req.getUserPrincipal().getName());
-			session.setAttribute("isAdmin", req.isUserInRole("Admin"));
-			
+			req.login(user, pass);
 			break;
 		default:
 			break;
 		}
+		
+		
 		
 		resp.sendRedirect(req.getContextPath());
 	}

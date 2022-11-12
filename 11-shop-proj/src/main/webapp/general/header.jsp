@@ -32,7 +32,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
 		<div class="container-fluid">
-			<a href="${home }" class="navbar-brand text-success">Shop.mm</a>
+			<a href="${home }" class="navbar-brand text-success">BigBikeSale.mm(BBS)</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#shopsupprotcontent"
 				aria-controls="shopsupprotcontent" aria-expanded="false"
