@@ -1,42 +1,39 @@
 package com.jdc.mkt.serviceImpl;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.sql.DataSource;
 
 import com.jdc.mkt.model.Category;
 import com.jdc.mkt.service.CategoryService;
+import static com.jdc.mkt.utils.ConnectionManager.getConnection;
 
-import jakarta.annotation.Resource;
-
-public class CategoryServiceImpl implements CategoryService{
-	
-	@Resource(name="jdbc/shop_db")
-	DataSource ds;
+public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> getAllCatgory() {
-		
+
 		String sql = "select * from category_tbl ";
-		
-		try(Connection conn=ds.getConnection();var stmt=conn.prepareStatement(sql)){
-			
-			
-			
-		}catch (Exception e) {
+
+		List<Category> list = new ArrayList<>();
+		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql)) {
+
+			var rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Category c = new Category(rs.getString("cat_name"), rs.getString("cat_size"), rs.getString("cat_sex"));
+				list.add(c);
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 
 	@Override
 	public void createCategory(Category cat) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	
-	
 }

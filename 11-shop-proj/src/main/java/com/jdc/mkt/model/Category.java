@@ -1,5 +1,5 @@
 package com.jdc.mkt.model;
 
-public class Category {
+public record Category(String name,String size,String sex) {
 
 }
