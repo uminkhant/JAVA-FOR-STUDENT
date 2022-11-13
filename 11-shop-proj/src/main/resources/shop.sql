@@ -21,8 +21,6 @@ create table category_tbl(
 	cat_sex  enum('Male','Female','Unisex')
 
 );
- 
-
 
 insert into category_tbl values(null,'T-shirt',1,1);
 insert into category_tbl values(null,'T-shirt',2,1);
