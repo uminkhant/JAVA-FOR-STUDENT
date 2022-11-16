@@ -31,7 +31,7 @@ class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> findBy(String name, String size, String sex) {
 
-		StringBuffer sb = new StringBuffer("select * from category_tbl where 1=1");
+		StringBuffer sb = new StringBuffer("select * from category_tbl  where 1=1");
 		List<Object> list = new ArrayList<>();
 		List<Category>categories=new ArrayList<>();
 
@@ -57,6 +57,7 @@ class CategoryServiceImpl implements CategoryService {
 
 			while (rs.next()) {
 				Category c = new Category(
+							rs.getInt("id"),
 							rs.getString("cat_name"),
 							rs.getString("cat_size"),
 							rs.getString("cat_sex")

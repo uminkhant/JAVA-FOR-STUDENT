@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>edit category</title>
 </head>
 <body>
 	<c:url var="head" value="../general/header.jsp"></c:url>
@@ -15,15 +15,15 @@
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4 ">
 
-		<h1>Category</h1>
+		<h1 class="txt-color">CATEGORY</h1>
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col">No</th>
-					<th class="col">Name</th>
-					<th class="col">Size</th>
-					<th class="col">Sex</th>
-					<th class="col">Edit</th>
+					<th class="col text-secondary">No</th>
+					<th class="col text-secondary">Name</th>
+					<th class="col text-secondary">Size</th>
+					<th class="col text-secondary">Sex</th>
+					<th class="col text-secondary">Edit</th>
 
 				</tr>
 			</thead>
@@ -37,8 +37,8 @@
 					<td class="col">${c.sex() }</td>
 					<td class="col">
 						<div class="">
-							<a href="" class="btn btn-danger mr-2">Delete</a> 
-							<a href="" class="btn btn-warning mr-2">Edit</a>
+							<a href="" class="btn btn-outline-danger mr-2">Delete</a> 
+							<a href="" class="btn btn-outline-warning mr-2">Edit</a>
 						</div>
 					</td>
 				</tr>

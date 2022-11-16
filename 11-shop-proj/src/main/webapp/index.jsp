@@ -13,6 +13,7 @@
 .img-size {
 	width: 300px;
 	hight: 300px;
+	padding: 5px;
 }
 </style>
 <meta charset="UTF-8">
@@ -22,101 +23,93 @@
 	<c:url var="head" value="general/header.jsp"></c:url>
 	<c:url var="foot" value="general/footer.jsp"></c:url>
 	<c:url var="image" value="images"></c:url>
+	<c:url var="searchItem" value="/searchItem"></c:url>
 
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-9">
 
-				<div class="card border-success mb-3" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="${image }/sh1.jpg"
-								class="img-fluid rounded-start img-size" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title txt-color">Shirt</h5>
-								<p class="card-text txt-color">
-									This is a wider card with supporting text below as a natural
-									lead-in to additional content. This content is a little bit
-									longer. <a href="#" class="card-link ">More info ...</a>
-								</p>
-								<button type="button" class="btn btn-outline-info txt-color">Add
-									To Cart</button>
+				<c:forEach var="item" items="${items }">
 
+					<div class="card  mb-3" style="max-width: 100%">
+						<div class="row g-0">
+							<div class="col-md-4 my-auto d-block ">
+								<img src="${image }/${item.img()}"
+									class="img-fluid rounded-start img-size " alt="...">
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h5 class="card-title txt-color">${item.name() }</h5>
+									<p class="card-text">${item.cat().name() }</p>
+									<p class="card-text">${item.cat().size() }</p>
+									<p class="card-text">${item.cat().sex() }</p>
+									<p class="card-text">${item.desc() }</p>
+									<button type="button" class="button-color">Add To Cart</button>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
-				<div class="card border-success mb-3" style="max-width: 100%;">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="${image }/so1.jpg"
-								class="img-fluid rounded-start img-size" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Shoes</h5>
-								<p class="card-text">
-									This is a wider card with supporting text below as a natural
-									lead-in to additional content. This content is a little bit
-									longer. <a href="#" class="card-link">More info ...</a>
-								</p>
-								<button type="button" class="btn btn-outline-success">Add
-									To Cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<br />
-				<div class="card border-success mb-3" style="max-width: 100%">
-					<div class="row g-0">
-						<div class="col-md-4">
-							<img src="${image }/tr1.jpeg"
-								class="img-fluid rounded-start img-size" alt="...">
-						</div>
-						<div class="col-md-8">
-							<div class="card-body">
-								<h5 class="card-title">Trousers</h5>
-								<p class="card-text">
-									This is a wider card with supporting text below as a natural
-									lead-in to additional content. This content is a little bit
-									longer. <a href="#" class="card-link">More info ...</a>
-								</p>
-								<button type="button" class="btn btn-outline-success">Add
-									To Cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
+
 			<div class="col">
-				<div class="card border-success">
-					<div class="card-body">
-						<div class="card-title">Categories</div>
-						<form action="#" method="post">
-							<c:forEach var="c" items="${categories }">
+				<form action="${searchItem }" method="post" id="searchForm">
+					<div class="card  mb-2">
+						<div class="card-body">
+							<div class="card-title txt-color">CATEGORIES</div>
+							<c:forEach var="c" items="${categories_name }">
 								<div class="card-text">
-									<input id="${c.name() }" type="radio" value="${c.name() }" />
-									<label for="${c.name() }">${c.name()}</label>
+									<input class="selectCat" id="${c }" type="radio" value="${c}"
+										name="category" onclick="submitOnClick('searchForm')" /> <label
+										for="${c}">${c}</label>
 								</div>
 							</c:forEach>
-						</form>
+
+						</div>
 					</div>
-				</div>
+					<div class="card  mb-2">
+						<div class="card-body">
+							<div class="card-title txt-color">SIZES</div>
+
+							<c:forEach var="c" items="${categories_size }">
+								<div class="card-text">
+									<input class="selectCat" id="${c }" type="radio" value="${c}"
+										name="size" onclick="submitOnClick('searchForm')" /> <label
+										for="${c}">${c}</label>
+								</div>
+							</c:forEach>
+
+						</div>
+					</div>
+					<div class="card  mb-2">
+						<div class="card-body">
+							<div class="card-title txt-color">SEX TYPE</div>
+
+							<c:forEach var="c" items="${categories_sex }">
+								<div class="card-text">
+									<input class="selectCat" id="${c }" type="radio" value="${c}"
+										name="sex" onclick="submitOnClick('searchForm')" /> <label
+										for="${c}">${c}</label>
+								</div>
+							</c:forEach>
+
+						</div>
+					</div>
+
+					
+				</form>
 			</div>
 		</div>
 	</div>
-	<c:url var="searchCat" value="/searchByCat"></c:url>
-	<form action="${searchCat }" class="d-none" method="post"></form>
 
 	<c:import url="${foot }"></c:import>
-	<!-- <script type="text/javascript">
-		$(() => {
-			$(".selectCat").click(() => $("#uploadFile").click());
-		})
-	</script> -->
+
+	<script>
+		function submitOnClick(formName) {
+			document.forms[formName].submit();
+		}
+	</script>
+
 </body>
 </html>

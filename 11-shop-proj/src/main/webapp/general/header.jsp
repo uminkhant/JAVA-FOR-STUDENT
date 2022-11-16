@@ -8,6 +8,7 @@
 	background-color: inherit;
 	border-color: #EB6440;
 	border-radius: 10px;
+	box-shadow:10px;
 	color: #EB6440;
 	padding: 5px;
 }
@@ -16,6 +17,9 @@
 	background-color: #EB6440;
 	border-color:inherit;
 	color: white;
+}
+.txt-color {
+	color: #e2592a;
 }
 </style>
 <head>
@@ -30,10 +34,8 @@
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 	crossorigin="anonymous"></script>
 
+<link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
 
-
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/fontawesome.min.css"></link>
 
 
 <title></title>
@@ -45,10 +47,10 @@
 	<c:url var="sale" value="/sale"></c:url>
 	<c:url var="home" value="/"></c:url>
 
-	<nav class="navbar navbar-expand-lg  ">
+	<nav class="navbar  navbar-expand-lg bg-light ">
 		<div class="container-fluid">
 			<a href="${home }" class="navbar-brand txt-color"
-				style="color: #EB6440;">OnlineShop.mm</a>
+				style="color: #EB6440;"><i class="bi bi-shop"></i>OnlineShop.mm</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#shopsupprotcontent"
 				aria-controls="shopsupprotcontent" aria-expanded="false"
@@ -62,7 +64,7 @@
 			<div class="collapse navbar-collapse" id="shopsupprotcontent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 					<li class="nav-item"><a class="nav-link "
-						style="color: #EB6440;" href="${category }">Category</a></li>
+						style="color: #EB6440;" href="${category }"><i class="bi bi-bookmarks-fill"></i>Category</a></li>
 
 					<li class="nav-item"><a class="nav-link "
 						style="color: #EB6440;" href="${item }">Item<span
