@@ -64,7 +64,7 @@ body {
 }
 
 .card-style {
-	box-shadow: 0 0 10px #666;
+	box-shadow: 0 0 5px #666;
 }
 </style>
 
@@ -83,7 +83,7 @@ body {
 	<nav class="navbar  navbar-expand-lg bg-light ">
 		<div class="container-fluid">
 			<a href="${home }" class="navbar-brand txt-color"><i
-				class="bi bi-shop"></i>OnlineShop.mm</a>
+				class="bi bi-shop"></i>&nbsp;OnlineShop.mm</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#shopsupprotcontent"
 				aria-controls="shopsupprotcontent" aria-expanded="false"
@@ -98,21 +98,16 @@ body {
 
 
 				<c:choose>
-					<c:when test="${not empty loginUser }">
+					<c:when
+						test="${not empty loginUser and loginUser.role().name() eq 'ADMIN'}">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 							<li class="nav-item"><a class="nav-link txt-color "
-								href="${category }"><i class="bi bi-bookmarks-fill"></i>Category</a></li>
+								href="${category }">Category</a></li>
 
 							<li class="nav-item"><a class="nav-link txt-color "
-								href="${item }"><i class="bi bi-file-earmark-code"></i>Item<span
-									class=" top-1  translate-middle badge rounded-pill bg-secondary">+99
-
-								</span></a></li>
+								href="${item }">Item</a></li>
 							<li class="nav-item"><a class="nav-link txt-color "
-								href="${sale }"><i class="bi bi-receipt"></i>Sale<span
-									class=" top-1 translate-middle badge rounded-pill bg-secondary">+99
-
-								</span></a></li>
+								href="${sale }">Sale</a></li>
 
 						</ul>
 					</c:when>
@@ -123,18 +118,19 @@ body {
 							<li class="nav-item"><a class="nav-link txt-color "
 								href="${signin }"><i class="bi bi-person-check"></i>Sign In</a></li>
 						</ul>
-						<div class="d-flex">
-							<a class="nav-link txt-color" href="${sale }"><i class="bi bi-person-circle"></i>User</a>
-							&nbsp;&nbsp;<a class="nav-link txt-color" href="${sale }"><i
-								class="bi bi-cart-plus-fill">Cart</i><span
-								class=" top-1 translate-middle badge rounded-pill bg-danger">+1
 
-							</span></a>
-						</div>
 					</c:otherwise>
 				</c:choose>
 
+				<div class="d-flex">
+					<a class="nav-link txt-color mx-3" href="#"><i
+						class="bi bi-person-circle"></i>&nbsp;${loginUser.name()}</a> &nbsp;&nbsp;<a
+						class="nav-link txt-color" href="${sale }"><i
+						class="bi bi-cart-plus-fill">Cart</i><span
+						class=" top-1 translate-middle badge rounded-pill bg-danger">+1
 
+					</span></a>
+				</div>
 
 			</div>
 

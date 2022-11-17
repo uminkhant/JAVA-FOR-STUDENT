@@ -1,5 +1,6 @@
 package com.jdc.mkt.model;
 
-public class Member {
+public record Member(int id, String name, String password, String phoneOne, String phoneTwo, Address addres,
+		MRole role) {
 
 }
