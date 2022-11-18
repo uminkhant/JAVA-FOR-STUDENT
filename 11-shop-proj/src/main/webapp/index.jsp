@@ -17,7 +17,7 @@
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-9">
-				<form class="d-flex mb-2" >
+				<form class="d-flex mb-2"  >
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search">
 					<button class="button-color" type="submit"><i class="bi bi-search"></i>Search</button>

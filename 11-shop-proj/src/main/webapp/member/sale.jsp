@@ -16,7 +16,7 @@
 	
 	<c:import url="${head }"></c:import>
 	
-	<h1>Sale</h1>
+	<p class="text-primary fs-3">Test order</p>
 	
 	<c:import url="${foot }"></c:import>
 </body>

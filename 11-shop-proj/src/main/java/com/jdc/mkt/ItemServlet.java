@@ -25,7 +25,6 @@ public class ItemServlet extends HttpServlet{
 		ItemService is=ItemService.getItemService();
 		getServletContext().setAttribute("items", is.findBy(null, 0, category,size , sex));
 		resp.sendRedirect(getServletContext().getContextPath().concat("/index.jsp"));
-		//System.out.println("category :"+"\t"+category+"\t"+size+"\t"+sex);
 		
 		
 	}
