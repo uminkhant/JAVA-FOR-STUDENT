@@ -30,12 +30,17 @@ class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<Item> findBy(String iName, int iPrice,String catName,String catSize,String catSex) {
+	public List<Item> findBy(int id,String iName, int iPrice,String catName,String catSize,String catSex) {
 
 		StringBuffer sb = new StringBuffer(
 				"Select i.id,i.item_name,i.item_price,i.item_img,i.item_desc,c.id,c.cat_name,c.cat_size,c.cat_sex from item_tbl i join category_tbl c on i.cat_id=c.id where 1=1");
 		List<Item> items = new ArrayList<>();
 		List<Object>tmp=new ArrayList<>();
+		
+		if(id>0) {
+			sb.append(" and i.id=?");
+			tmp.add(id);
+		}
 
 		if(iName != null && !iName.isEmpty()) {
 			

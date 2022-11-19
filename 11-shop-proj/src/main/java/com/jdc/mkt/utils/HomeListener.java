@@ -27,7 +27,7 @@ public class HomeListener implements ServletContextListener{
 		sce.getServletContext().setAttribute("categories_sex", listCatSex);
 		sce.getServletContext().setAttribute("categories", cs.findBy(null, null, null));
 		
-		//sce.getServletContext().setAttribute("items", is.findBy(null, 0, null, null, null));
+		sce.getServletContext().setAttribute("items", is.findBy(0,null, 0, null, null, null));
 		
 		
 	}

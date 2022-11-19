@@ -23,7 +23,8 @@ public class ItemServlet extends HttpServlet{
 		var sex = req.getParameter("sex");
 		
 		ItemService is=ItemService.getItemService();
-		getServletContext().setAttribute("items", is.findBy(null, 0, category,size , sex));
+		
+		getServletContext().setAttribute("items", is.findBy(0,null, 0, category,size , sex));
 		resp.sendRedirect(getServletContext().getContextPath().concat("/index.jsp"));
 		
 		

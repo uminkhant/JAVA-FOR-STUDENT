@@ -8,52 +8,5 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
-<!-- security role -->
-	<security-role>
-		<role-name>Admin</role-name>
-	</security-role>
-	<security-role>
-		<role-name>Member</role-name>
-	</security-role>
 
-
-
-	<!-- security constraint -->
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>admin</web-resource-name>
-			<url-pattern>/admin</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>Admin</role-name>
-		</auth-constraint>
-	</security-constraint>
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>member</web-resource-name>
-			<url-pattern>/member</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>Admin</role-name>
-			<role-name>Member</role-name>
-		</auth-constraint>
-	</security-constraint>
-
-
-	<!-- login authentication -->
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/security/login.jsp</form-login-page>
-			<form-error-page>/security/error.jsp</form-error-page>
-		</form-login-config>
-
-	</login-config>
-
-
-	<resource-ref>
-		<res-ref-name>jdbc/shop_db</res-ref-name>
-		<res-type>javax.sql.DataSource</res-type>
-	</resource-ref>
 </web-app>

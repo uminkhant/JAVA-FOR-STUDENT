@@ -10,9 +10,9 @@
 <body>
 
 
-<c:url var="head" value="general/header.jsp"></c:url>
+<c:url var="head" value="../general/header.jsp"></c:url>
 
-	<c:url var="foot" value="general/footer.jsp"></c:url>
+	<c:url var="foot" value="../general/footer.jsp"></c:url>
 	
 	<c:import url="${head }"></c:import>
 	

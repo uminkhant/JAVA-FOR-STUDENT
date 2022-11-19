@@ -74,7 +74,7 @@ body {
 
 	<c:url var="category" value="/category"></c:url>
 	<c:url var="item" value="/item"></c:url>
-	<c:url var="sale" value="/sale"></c:url>
+	<c:url var="order" value="/list-to-order"></c:url>
 	<c:url var="home" value="/"></c:url>
 	<c:url var="signup" value="/signUp"></c:url>
 	<c:url var="signin" value="/login"></c:url>
@@ -116,7 +116,8 @@ body {
 							<li class="nav-item"><a class="nav-link txt-color "
 								href="${signup }"><i class="bi bi-person"></i>&nbsp;Sign Up</a></li>
 							<li class="nav-item"><a class="nav-link txt-color "
-								href="${signin }"><i class="bi bi-person-check"></i>&nbsp;Sign In</a></li>
+								href="${signin }"><i class="bi bi-person-check"></i>&nbsp;Sign
+									In</a></li>
 						</ul>
 
 					</c:otherwise>
@@ -124,12 +125,14 @@ body {
 
 				<div class="d-flex">
 					<a class="nav-link txt-color mx-3" href="#"><i
-						class="bi bi-person-circle"></i>&nbsp;${loginUser.name()}</a> &nbsp;&nbsp;<a
-						class="nav-link txt-color" href="${sale }"><i
-						class="bi bi-cart-plus-fill">Cart</i><span
-						class=" top-1 translate-middle badge rounded-pill bg-danger">+1
-
-					</span></a>
+						class="bi bi-person-circle"></i>&nbsp;${loginUser.name()}</a>
+					&nbsp;&nbsp;<a class="nav-link txt-color " href="${order }"><i
+						class="bi bi-cart-plus-fill">Cart</i> <c:if
+							test="${orderList.size()>0 }">
+							<span
+								class=" top-1 translate-middle badge rounded-pill bg-danger">+${orderList.size() }
+							</span>
+						</c:if> </a>
 				</div>
 
 			</div>

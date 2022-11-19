@@ -13,14 +13,17 @@
 	<c:url var="image" value="images"></c:url>
 	<c:url var="searchItem" value="/searchItem"></c:url>
 
+
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-9">
-				<form class="d-flex mb-2"  >
+				<form class="d-flex mb-2">
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search">
-					<button class="button-color" type="submit"><i class="bi bi-search"></i>Search</button>
+					<button class="button-color" type="submit">
+						<i class="bi bi-search"></i>Search
+					</button>
 				</form>
 				<c:forEach var="item" items="${items }">
 
@@ -37,9 +40,13 @@
 									<p class="card-text">${item.cat().size() }</p>
 									<p class="card-text">${item.cat().sex() }</p>
 									<p class="card-text">${item.desc() }</p>
-									<button type="button" class="button-color ">
-										<i class="bi bi-cart-plus-fill"></i>&nbsp;Add
-									</button>
+
+									<c:url value="/add-to-cart" var="addToCart">
+										<c:param name="id" value="${item.id() }"></c:param>
+									</c:url>
+									<a href="${addToCart }" class="button-color" style="text-decoration:none;"><i
+										class="bi bi-cart-plus-fill"></i>&nbsp;Add</a>
+
 								</div>
 							</div>
 						</div>
@@ -51,7 +58,9 @@
 				<form action="${searchItem }" method="post" id="searchForm">
 					<div class="card  mb-2 card-style">
 						<div class="card-body">
-							<div class="card-title txt-color"><i class="bi bi-bookmarks-fill"></i>&nbsp;CATEGORIES</div>
+							<div class="card-title txt-color">
+								<i class="bi bi-bookmarks-fill"></i>&nbsp;CATEGORIES
+							</div>
 							<c:forEach var="c" items="${categories_name }">
 								<div class="card-text">
 									<input class="selectCat" id="${c }" type="radio" value="${c}"
@@ -64,7 +73,9 @@
 					</div>
 					<div class="card  mb-2 card-style">
 						<div class="card-body">
-							<div class="card-title txt-color"><i class="bi bi-bookmarks"></i>&nbsp;SIZES</div>
+							<div class="card-title txt-color">
+								<i class="bi bi-bookmarks"></i>&nbsp;SIZES
+							</div>
 
 							<c:forEach var="c" items="${categories_size }">
 								<div class="card-text">
@@ -78,7 +89,9 @@
 					</div>
 					<div class="card  mb-2 card-style">
 						<div class="card-body">
-							<div class="card-title txt-color"><i class="bi bi-people-fill"></i>&nbsp;SEX TYPE</div>
+							<div class="card-title txt-color">
+								<i class="bi bi-people-fill"></i>&nbsp;SEX TYPE
+							</div>
 
 							<c:forEach var="c" items="${categories_sex }">
 								<div class="card-text">
