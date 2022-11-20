@@ -44,7 +44,7 @@
 									<c:url value="/add-to-cart" var="addToCart">
 										<c:param name="id" value="${item.id() }"></c:param>
 									</c:url>
-									<a href="${addToCart }" class="button-color" style="text-decoration:none;"><i
+									<a href="${addToCart }" class="button-color anchor-link"><i
 										class="bi bi-cart-plus-fill"></i>&nbsp;Add</a>
 
 								</div>
@@ -109,10 +109,27 @@
 			</div>
 		</div>
 	</div>
+	<!-- Small modal -->
+	<button type="button" class="btn btn-primary" data-toggle="modal"
+		data-target=".bd-example-modal-sm">Small modal</button>
+
+	 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="bd-example-modal-sm"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">...</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		
+	</script>
 
 	<c:import url="${foot }"></c:import>
 
 	<script>
+		$('#modal').on('shown.bs.modal', function() {
+			$('#modal').modal('show')
+		})
 		function submitOnClick(formName) {
 			document.forms[formName].submit();
 		}
