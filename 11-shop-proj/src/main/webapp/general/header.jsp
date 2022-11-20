@@ -127,7 +127,7 @@ body {
 									<li class="nav-item"><a class="nav-link txt-color "
 										href="${editCategory }">Edit Category</a></li>
 									<li class="nav-item"><a class="nav-link txt-color "
-										href="${category }">Category</a></li>
+										href="${category }">Add Category</a></li>
 								</ul></li>
 
 
@@ -139,7 +139,7 @@ body {
 									<li class="nav-item"><a class="nav-link txt-color "
 										href="${editItem }">Edit Item</a></li>
 									<li class="nav-item"><a class="nav-link txt-color "
-										href="${item }">Item</a></li>
+										href="${item }">Add Item</a></li>
 								</ul></li>
 
 							<li class="nav-item dropdown"><a

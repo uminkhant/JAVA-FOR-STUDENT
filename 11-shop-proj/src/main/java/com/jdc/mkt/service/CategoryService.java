@@ -7,7 +7,7 @@ import com.jdc.mkt.model.Category;
 public interface CategoryService {
 	
 	List<Category>findBy(String name,String size,String sex);
-	void createCategory(Category cat);
+	int createCategory(Category cat);
 	
 	public static CategoryService getCategoryService() {
 		return new CategoryServiceImpl();

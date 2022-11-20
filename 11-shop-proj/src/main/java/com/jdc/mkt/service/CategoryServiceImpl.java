@@ -1,6 +1,7 @@
 package com.jdc.mkt.service;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +14,23 @@ class CategoryServiceImpl implements CategoryService {
 	
 
 	@Override
-	public void createCategory(Category c) {
+	public int createCategory(Category c) {
 		String sql = "insert into category_tbl (cat_name,cat_size,cat_sex)values(?,?,?)";
-		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
 
 			stmt.setString(1, c.name());
 			stmt.setString(2, c.size());
 			stmt.setString(3, c.sex());
 
-			stmt.executeUpdate();
+			return stmt.executeUpdate();
+			
+		
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return 0;
 	}
 
 	@Override

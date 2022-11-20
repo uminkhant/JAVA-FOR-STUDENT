@@ -1,6 +1,7 @@
 package com.jdc.mkt.service;
 
 import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,22 +12,25 @@ import static com.jdc.mkt.utils.ConnectionManager.getConnection;
 class ItemServiceImpl implements ItemService {
 
 	@Override
-	public void createItem(Item item) {
+	public int createItem(Item item) {
 
 		String sql = "insert into item_tbl(item_name,item_price,item_img,item_desc,cat_id) values(?,?,?,?,?)";
-		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql)) {
+		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
 
 			stmt.setString(1, item.name());
 			stmt.setInt(2, item.price());
 			stmt.setString(3, item.img());
 			stmt.setString(4, item.desc());
+			
 			stmt.setInt(5, item.cat().id());
 
-			stmt.executeUpdate();
+			return stmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return 0;
 	}
 
 	@Override

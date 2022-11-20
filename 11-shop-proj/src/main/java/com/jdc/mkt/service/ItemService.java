@@ -8,7 +8,7 @@ import com.jdc.mkt.model.Item;
 public interface ItemService {
 	
 	
-	public void createItem(Item item);
+	public int createItem(Item item);
 	public List<Item>findBy(int id,String iName,int iPrice,String catName,String catSize,String catSex);
 
 	public static ItemService getItemService() {
