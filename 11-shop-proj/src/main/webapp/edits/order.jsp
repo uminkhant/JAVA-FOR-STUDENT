@@ -14,7 +14,7 @@
 	
 	<c:import url="${head }"></c:import>
 	
-	<h1>Sale</h1>
+	<h1>Order History</h1>
 	
 	<c:import url="${foot }"></c:import>
 </body>

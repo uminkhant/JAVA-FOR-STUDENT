@@ -23,10 +23,7 @@
 	integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
 	crossorigin="anonymous"></script>
 
-<script
-	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-	crossorigin="anonymous"></script>
+
 
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -46,9 +43,10 @@ body {
 }
 
 .anchor-link {
-	border: 1px solid #EB6440 ;
-	padding:10px;
+	border: 1px solid #EB6440;
+	padding: 10px;
 	text-decoration: none;
+	padding: 10px;
 }
 
 .button-color:hover {
@@ -94,10 +92,12 @@ body {
 	<c:url var="category" value="/category"></c:url>
 	<c:url var="item" value="/item"></c:url>
 
-	<c:url var="order" value="/list-to-order"></c:url>
+	<c:url var="cart" value="/cart-orders"></c:url>
+	<c:url var="orderdetails" value="/order-detials"></c:url>
 	<c:url var="home" value="/"></c:url>
 	<c:url var="signup" value="/signUp"></c:url>
 	<c:url var="signin" value="/login"></c:url>
+	<c:url var="logout" value="/logout"></c:url>
 
 
 	<nav class="navbar  navbar-expand-lg bg-light ">
@@ -119,6 +119,8 @@ body {
 						test="${not empty loginUser and loginUser.role().name() eq 'ADMIN'}">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 
+							<li class="nav-item"><a href="#" class="nav-link txt-color">Member</a></li>
+							
 							<li class="nav-item dropdown "><a
 								class="nav-link dropdown-toggle txt-color" href="#"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -142,16 +144,7 @@ body {
 										href="${item }">Add Item</a></li>
 								</ul></li>
 
-							<li class="nav-item dropdown"><a
-								class="nav-link dropdown-toggle txt-color" href="#"
-								role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Sale </a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link txt-color "
-										href="${sale }">Sale</a></li>
-									<li class="nav-item"><a class="nav-link txt-color "
-										href="${sale }">Sale History</a></li>
-								</ul></li>
+							<li class="nav-item"><a href="${orderdetails }" class="nav-link txt-color">Order Details</a></li>
 
 
 
@@ -172,13 +165,13 @@ body {
 				</c:choose>
 
 				<div class="d-flex mx-3">
-					<a class="nav-link txt-color mx-3" href="#"> <i
+					<a class="nav-link txt-color mx-3" href="#" data-bs-toggle="modal"
+						data-bs-target="#staticBackdrop"> <i
 						class="bi bi-person-circle"></i>&nbsp;${loginUser.name()}
-					</a> &nbsp;&nbsp;<a class="nav-link txt-color " href="${order }"><i
+					</a> &nbsp;&nbsp; <a class="nav-link txt-color " href="${cart }"><i
 						class="bi bi-cart-plus-fill">Cart</i> <c:if
-							test="${orderList.size()>0 }">
-							<span
-								class=" translate-middle badge rounded-pill bg-danger">+${orderList.size() }
+							test="${orderDetailList.size()>0 }">
+							<span class=" translate-middle badge rounded-pill bg-danger">+${orderDetailList.size() }
 							</span>
 						</c:if> </a>
 				</div>
@@ -189,6 +182,28 @@ body {
 		</div>
 	</nav>
 
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="txt-color" id="staticBackdropLabel">Logout Member</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">Do You Want To Logout From This Application</div>
+				<div class="modal-footer">
+					<a  class="button-color anchor-link"
+						data-bs-dismiss="modal">Cancel</a>
+					<a  class="button-color anchor-link" href="${logout }">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
 
 </body>
 </html>

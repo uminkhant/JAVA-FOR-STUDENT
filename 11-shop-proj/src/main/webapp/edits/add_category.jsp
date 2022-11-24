@@ -11,7 +11,7 @@
 <body>
 	<c:url var="head" value="../general/header.jsp"></c:url>
 	<c:url var="foot" value="../general/footer.jsp"></c:url>
-	<c:url var="catSave" value="/save-category"></c:url>
+	<c:url var="addCat" value="/add_category"></c:url>
 
 	<c:import url="${head }"></c:import>
 
@@ -19,7 +19,7 @@
 
 
 
-		<form action="${catSave }" class="form-inner" method="post">
+		<form action="${addCat }" class="form-inner" method="post">
 			<div>
 				<p class="txt-color fs-2">Category Form</p>
 			</div>

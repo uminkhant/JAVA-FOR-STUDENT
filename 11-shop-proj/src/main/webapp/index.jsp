@@ -18,9 +18,9 @@
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-9">
-				<form class="d-flex mb-2">
+				<form class="d-flex mb-2" action="${searchItem }" method="post">
 					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
+						aria-label="Search" name=itemName>
 					<button class="button-color" type="submit">
 						<i class="bi bi-search"></i>Search
 					</button>
@@ -109,27 +109,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- Small modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal"
-		data-target=".bd-example-modal-sm">Small modal</button>
-
-	 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" id="bd-example-modal-sm"
-		aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">...</div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-		
-	</script>
+	
 
 	<c:import url="${foot }"></c:import>
 
 	<script>
-		$('#modal').on('shown.bs.modal', function() {
-			$('#modal').modal('show')
-		})
+		
 		function submitOnClick(formName) {
 			document.forms[formName].submit();
 		}

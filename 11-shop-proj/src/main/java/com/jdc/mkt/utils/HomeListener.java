@@ -3,6 +3,7 @@ package com.jdc.mkt.utils;
 
 import java.util.List;
 
+import com.jdc.mkt.model.Item;
 import com.jdc.mkt.service.CategoryService;
 import com.jdc.mkt.service.ItemService;
 
@@ -18,6 +19,9 @@ public class HomeListener implements ServletContextListener{
 		
 		CategoryService cs=CategoryService.getCategoryService();
 		ItemService is=ItemService.getItemService();
+		
+		
+		
 		List<String>listCatName=cs.findBy(null, null, null).stream().map(c->c.name()).distinct().toList();
 		List<String>listCatSize=cs.findBy(null, null, null).stream().map(c->c.size()).distinct().toList();
 		List<String>listCatSex=cs.findBy(null, null, null).stream().map(c->c.sex()).distinct().toList();

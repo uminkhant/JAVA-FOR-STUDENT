@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/save-category")
+@WebServlet(urlPatterns = "/add_category")
 public class CategoryServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class CategoryServlet extends HttpServlet {
 			req.setAttribute("message", "Successfully save !");
 		}
 		
-		req.getRequestDispatcher("/edits/category.jsp").forward(req, resp);
+		req.getRequestDispatcher("/edits/add_category.jsp").forward(req, resp);
 		
 	}
 

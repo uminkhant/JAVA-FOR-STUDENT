@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/searchItem", "/save-item" })
+@WebServlet(urlPatterns = { "/searchItem", "/add_item" })
 public class ItemServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -34,20 +34,21 @@ public class ItemServlet extends HttpServlet {
 		var size = req.getParameter("size");
 		var sex = req.getParameter("sex");
 		var name = req.getParameter("itemName");
-		var price = Integer.parseInt(req.getParameter("price"));
+		var price = Integer.parseInt(req.getParameter("price")==null?"0":req.getParameter("price"));
 		var img = req.getParameter("img");
 		var desc = req.getParameter("desc");
 		
-		System.out.println(" category :"+category+"\t"+size+"\t"+sex);
-
+	
 		switch (req.getServletPath()) {
 		case "/searchItem":
-			getServletContext().setAttribute("items", iService.findBy(0, null, 0, category, size, sex));
-
+			System.out.println("item Name :"+name);
+			getServletContext().removeAttribute("items");
+			getServletContext().setAttribute("items", iService.findBy(0, name, 0, category, size, sex));
+				
 			resp.sendRedirect(getServletContext().getContextPath().concat("/index.jsp"));
 			break;
 			
-		case "/save-item":
+		case "/add_item":
 			List<Category> list = catService.findBy(category, size, sex);
 			System.out.println("category :"+list.get(0));
 			Item item = new Item(0, name, price, img, desc, list.get(0));
@@ -55,7 +56,7 @@ public class ItemServlet extends HttpServlet {
 			if (i > 0) {
 				req.setAttribute("message", "successfully save item !");
 			}
-			req.getRequestDispatcher("/edits/item.jsp").forward(req, resp);
+			req.getRequestDispatcher("/edits/add_item.jsp").forward(req, resp);
 
 			break;
 

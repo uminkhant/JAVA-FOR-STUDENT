@@ -11,7 +11,7 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 
-@WebFilter("/list-to-order")
+@WebFilter("/cart-orders")
 public class SecurityFilter implements Filter {
 
 	@Override

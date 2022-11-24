@@ -48,8 +48,8 @@ class ItemServiceImpl implements ItemService {
 
 		if(iName != null && !iName.isEmpty()) {
 			
-			sb.append(" and i.item_name =?");
-			tmp.add(iName);
+			sb.append(" and lower(i.item_name) =?");
+			tmp.add(iName.toLowerCase());
 		}
 		
 		if(iPrice>0) {
