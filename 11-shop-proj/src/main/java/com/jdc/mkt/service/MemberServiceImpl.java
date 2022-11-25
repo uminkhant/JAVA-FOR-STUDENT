@@ -7,11 +7,13 @@ import static com.jdc.mkt.utils.ConnectionManager.getConnection;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MemberServiceImpl implements MemberService {
 
 	@Override
-	public Member findMember(String name, String password) {
+	public Member findMemberByNameAndPassword(String name, String password) {
 
 		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id where m.login=? and m.password=?";
 		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
@@ -46,10 +48,10 @@ public class MemberServiceImpl implements MemberService {
 			stmt.setString(2, member.password());
 			stmt.setString(3, member.phoneOne());
 			stmt.setString(4, member.phoneTwo());
-			stmt.setInt(5, createAddress(member.addres().city(), member.addres().township(), member.addres().street()));
+			stmt.setInt(5,
+					createAddress(member.address().city(), member.address().township(), member.address().street()));
 			int id = stmt.executeUpdate();
-			
-		
+
 			return id;
 
 		} catch (Exception e) {
@@ -74,6 +76,34 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public List<Member> findMember() {
+		List<Member>list=new ArrayList<>();
+		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id ";
+		
+		
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+
+			var rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Address a = new Address(rs.getInt("a.id"), rs.getString("a.city"), rs.getString("a.township"),
+						rs.getString("a.street"));
+				Member m = new Member(rs.getInt("m.id"), rs.getString("m.login"), rs.getString("m.password"),
+						rs.getString("m.phone1"), rs.getString("m.phone2"), a,
+						MRole.valueOf(rs.getString("m.role").toUpperCase()));
+
+				list.add(m);
+				
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
 	}
 
 }

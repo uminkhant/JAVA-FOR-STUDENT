@@ -41,10 +41,8 @@ public class ItemServlet extends HttpServlet {
 	
 		switch (req.getServletPath()) {
 		case "/searchItem":
-			System.out.println("item Name :"+name);
-			getServletContext().removeAttribute("items");
+			
 			getServletContext().setAttribute("items", iService.findBy(0, name, 0, category, size, sex));
-				
 			resp.sendRedirect(getServletContext().getContextPath().concat("/index.jsp"));
 			break;
 			

@@ -15,7 +15,7 @@
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4 ">
 
-		<h3 class="txt-color">CATEGORY</h3>
+		<h3 class="txt-color"><i class="bi bi-tags"></i>&nbsp;CATEGORY</h3>
 		<table class="table">
 			<thead>
 				<tr>

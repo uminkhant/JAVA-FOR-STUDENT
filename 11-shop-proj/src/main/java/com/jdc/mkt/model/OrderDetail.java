@@ -6,6 +6,7 @@ public class OrderDetail {
 	private Item item;
 	private int qty;
 	private int total;
+	private Order order;
 	
 	public int getId() {
 		return id;
@@ -30,6 +31,12 @@ public class OrderDetail {
 	}
 	public void setTotal(int total) {
 		this.total = total;
+	}
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order order) {
+		this.order = order;
 	}
 	
 	

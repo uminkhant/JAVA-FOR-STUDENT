@@ -21,8 +21,8 @@
 				<form class="d-flex mb-2" action="${searchItem }" method="post">
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search" name=itemName>
-					<button class="button-color" type="submit">
-						<i class="bi bi-search"></i>Search
+					<button class="button-color anchor-link" type="submit">
+						<i class="bi bi-search"></i>&nbsp;Search
 					</button>
 				</form>
 				<c:forEach var="item" items="${items }">
@@ -35,16 +35,16 @@
 							</div>
 							<div class="col-md-8">
 								<div class="card-body">
-									<h5 class="card-title txt-color">${item.name() }</h5>
-									<p class="card-text">${item.cat().name() }</p>
-									<p class="card-text">${item.cat().size() }</p>
-									<p class="card-text">${item.cat().sex() }</p>
+									<h5 class="card-title txt-color"><i class="bi bi-star"></i>&nbsp;${item.name() }</h5>
+									<p class="card-text"><span class="txt-color">Category : </span>${item.cat().name() }</p>
+									<p class="card-text"><span class="txt-color">Size : </span>${item.cat().size() }</p>
+									<p class="card-text"><span class="txt-color">Sex : </span>${item.cat().sex() }</p>
 									<p class="card-text">${item.desc() }</p>
 
 									<c:url value="/add-to-cart" var="addToCart">
 										<c:param name="id" value="${item.id() }"></c:param>
 									</c:url>
-									<a href="${addToCart }" class="button-color anchor-link"><i
+									<a href="${addToCart }" class="button-color anchor-link" style="padding:10px 15px;"><i
 										class="bi bi-cart-plus-fill"></i>&nbsp;Add</a>
 
 								</div>
@@ -63,7 +63,7 @@
 							</div>
 							<c:forEach var="c" items="${categories_name }">
 								<div class="card-text">
-									<input class="selectCat" id="${c }" type="radio" value="${c}"
+									<input class="selectCat" id="${c }" type="radio"  value="${c}"
 										name="category" onclick="submitOnClick('searchForm')" /> <label
 										for="${c}">${c}</label>
 								</div>
@@ -118,6 +118,8 @@
 		function submitOnClick(formName) {
 			document.forms[formName].submit();
 		}
+		
+		
 	</script>
 
 </body>

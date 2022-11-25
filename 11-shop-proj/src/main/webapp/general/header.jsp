@@ -37,16 +37,15 @@ body {
 
 .button-color {
 	background-color: inherit;
+	border: 1px solid #EB6440;
 	border-radius: 10px;
+	padding: 6px;
 	color: #EB6440;
-	width: 5rem;
+	width: 6em;
 }
 
 .anchor-link {
-	border: 1px solid #EB6440;
-	padding: 10px;
 	text-decoration: none;
-	padding: 10px;
 }
 
 .button-color:hover {
@@ -89,11 +88,12 @@ body {
 
 	<c:url var="editCategory" value="/editcategory"></c:url>
 	<c:url var="editItem" value="/edititem"></c:url>
-	<c:url var="category" value="/category"></c:url>
-	<c:url var="item" value="/item"></c:url>
+	<c:url var="addcategory" value="/add-category"></c:url>
+	<c:url var="additem" value="/add-item"></c:url>
+	<c:url var="member" value="/member"></c:url>
 
 	<c:url var="cart" value="/cart-orders"></c:url>
-	<c:url var="orderdetails" value="/order-detials"></c:url>
+	<c:url var="orderdetails" value="/order-detail-list"></c:url>
 	<c:url var="home" value="/"></c:url>
 	<c:url var="signup" value="/signUp"></c:url>
 	<c:url var="signin" value="/login"></c:url>
@@ -119,8 +119,9 @@ body {
 						test="${not empty loginUser and loginUser.role().name() eq 'ADMIN'}">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 
-							<li class="nav-item"><a href="#" class="nav-link txt-color">Member</a></li>
-							
+							<li class="nav-item"><a href="${member }"
+								class="nav-link txt-color">Member</a></li>
+
 							<li class="nav-item dropdown "><a
 								class="nav-link dropdown-toggle txt-color" href="#"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,7 +130,7 @@ body {
 									<li class="nav-item"><a class="nav-link txt-color "
 										href="${editCategory }">Edit Category</a></li>
 									<li class="nav-item"><a class="nav-link txt-color "
-										href="${category }">Add Category</a></li>
+										href="${addcategory }">Add Category</a></li>
 								</ul></li>
 
 
@@ -141,10 +142,11 @@ body {
 									<li class="nav-item"><a class="nav-link txt-color "
 										href="${editItem }">Edit Item</a></li>
 									<li class="nav-item"><a class="nav-link txt-color "
-										href="${item }">Add Item</a></li>
+										href="${additem }">Add Item</a></li>
 								</ul></li>
 
-							<li class="nav-item"><a href="${orderdetails }" class="nav-link txt-color">Order Details</a></li>
+							<li class="nav-item"><a href="${orderdetails }"
+								class="nav-link txt-color">Order Details</a></li>
 
 
 
@@ -167,11 +169,11 @@ body {
 				<div class="d-flex mx-3">
 					<a class="nav-link txt-color mx-3" href="#" data-bs-toggle="modal"
 						data-bs-target="#staticBackdrop"> <i
-						class="bi bi-person-circle"></i>&nbsp;${loginUser.name()}
+						class="bi bi-person-circle"></i>&nbsp;Login By :${loginUser.name()}
 					</a> &nbsp;&nbsp; <a class="nav-link txt-color " href="${cart }"><i
 						class="bi bi-cart-plus-fill">Cart</i> <c:if
 							test="${orderDetailList.size()>0 }">
-							<span class=" translate-middle badge rounded-pill bg-danger">+${orderDetailList.size() }
+							<span class=" translate-middle badge rounded-pill bg-danger">&nbsp;+${orderDetailList.size() }
 							</span>
 						</c:if> </a>
 				</div>
@@ -193,17 +195,17 @@ body {
 					<h5 class="txt-color" id="staticBackdropLabel">Logout Member</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
-				<div class="modal-body">Do You Want To Logout From This Application</div>
+				<div class="modal-body">Do You Want To Logout From This
+					Application</div>
 				<div class="modal-footer">
-					<a  class="button-color anchor-link"
-						data-bs-dismiss="modal">Cancel</a>
-					<a  class="button-color anchor-link" href="${logout }">Logout</a>
+					<a class="button-color anchor-link" data-bs-dismiss="modal">Cancel</a>
+					<a class="button-color anchor-link" href="${logout }">Logout</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	
+
 
 </body>
 </html>

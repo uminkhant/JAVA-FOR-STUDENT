@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {
 
-		"/login", "/error", "/signUp", "/logout" })
+		"/login", "/signUp", "/logout" })
 
 public class SecurityServlet extends HttpServlet {
 
@@ -34,7 +34,6 @@ public class SecurityServlet extends HttpServlet {
 		var path = switch (req.getServletPath()) {
 		case "/login" -> "/security/login.jsp";
 		case "/signUp" -> "/security/signUp.jsp";
-		case "/error" -> "/security/error.jsp";
 		case "/logout" -> {
 			req.getSession().invalidate();
 			yield "/index.jsp";
@@ -83,17 +82,17 @@ public class SecurityServlet extends HttpServlet {
 
 	}
 
-	void checkMember(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+	void checkMember(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
 		var userName = req.getParameter("user");
 		var password = req.getParameter("pass");
-		Member member = memberService.findMember(userName, password);
+		Member member = memberService.findMemberByNameAndPassword (userName, password);
 
 		if (member != null) {
 			req.getSession(true).setAttribute("loginUser", member);
 
 		} else {
-			resp.sendRedirect(req.getContextPath().concat("security/error.jsp"));
+			req.getRequestDispatcher("/security/error.jsp").forward(req, resp);
 		}
 
 	}

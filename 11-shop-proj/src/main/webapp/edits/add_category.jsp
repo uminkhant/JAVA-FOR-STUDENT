@@ -21,7 +21,7 @@
 
 		<form action="${addCat }" class="form-inner" method="post">
 			<div>
-				<p class="txt-color fs-2">Category Form</p>
+				<p class="txt-color fs-2"><i class="bi bi-tags"></i>&nbsp;Category Form</p>
 			</div>
 
 
@@ -55,8 +55,8 @@
 				</select>
 			</div>
 			<div>
-				<button class="button-color mr-2" type="submit">Save</button>
-				<button class="button-color" type="reset">cancel</button>
+				<button class="button-color  mr-2" type="submit">Save</button>
+				<button class="button-color " type="reset">cancel</button>
 			</div>
 			<c:if test="${not empty message and message!=null }">
 				<p class="txt-color">${message }</p>

@@ -18,7 +18,7 @@
 
 		<form action="${addItem }" class="form-inner" method="post">
 			<div>
-				<p class="txt-color fs-2">Item Form</p>
+				<p class="txt-color fs-2"><i class="bi bi-star"></i>&nbsp;Item Form</p>
 			</div>
 			<div class="mb-3">
 				<label for="item" class="form-label">Item Name</label> <input
@@ -80,8 +80,8 @@
 				</select>
 			</div>
 			<div>
-				<button class="button-color mr-2">Save</button>
-				<button class="button-color">cancel</button>
+				<button class="button-color  mr-2">Save</button>
+				<button class="button-color ">cancel</button>
 			</div>
 			<c:if test="${not empty message and message!=null }">
 				<p class="txt-color">${message }</p>

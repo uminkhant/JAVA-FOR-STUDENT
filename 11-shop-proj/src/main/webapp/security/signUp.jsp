@@ -71,8 +71,8 @@
 			</fieldset>
 			<br />
 			<div>
-				<button class="button-color mr-1" type="submit">Submit</button>
-				<button class="button-color" type="submit">Cancel</button>
+				<button class="button-color anchor-link mr-1" type="submit">Submit</button>
+				<button class="button-color anchor-link" type="submit">Cancel</button>
 			</div>
 			
 			<c:if test="${not empty message and message!=null }">

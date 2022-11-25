@@ -18,7 +18,7 @@
 
 	<div class="container mt-4 ">
 
-		<h3 class="txt-color">Item</h3>
+		<h3 class="txt-color"><i class="bi bi-star"></i>&nbsp;Item</h3>
 		<table class="table">
 			<thead>
 				<tr>
