@@ -24,6 +24,7 @@ create table member_tbl(
 	address_id int not null,
 	role enum('Member','Admin') not null default 'Member',
 	foreign key(address_id)references address_tbl(id)
+	on update cascade on delete cascade
 	);
 
 
@@ -84,21 +85,24 @@ insert into item_tbl values(null,'Shirt 2',500,'sh2.jpg','this is testing with u
 insert into item_tbl values(null,'Shirt 3',700,'sh3.jpg','this is testing with u neck t-shirt',3,null);
 
 
-create table sale_tbl(
+create table order_tbl(
 
 	id int primary key auto_increment,
 	member_id int not null,
 	total_price int ,
 	discount int ,
-	sale_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	delivered_dt TIMESTAMP  ,
+	order_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key(member_id)references member_tbl(id)
 );
 
-create table sale_details_tbl(
+create table order_details_tbl(
 	id int primary key auto_increment,
-	sale_id int not null,
+	order_id int not null,
+	qty int not null,
+	total int not null,
 	item_id int not null,
-	foreign key(sale_id) references sale_tbl(id),
+	foreign key(order_id) references order_tbl(id),
 	foreign key(item_id)references item_tbl(id)
 );
 
