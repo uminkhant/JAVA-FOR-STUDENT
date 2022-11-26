@@ -36,7 +36,7 @@ class CategoryServiceImpl implements CategoryService {
 	@Override
 	public List<Category> findBy(String name, String size, String sex) {
 
-		StringBuffer sb = new StringBuffer("select * from category_tbl  where 1=1");
+		StringBuffer sb = new StringBuffer("select * from category_tbl  where isActive=1 ");
 		List<Object> list = new ArrayList<>();
 		List<Category>categories=new ArrayList<>();
 

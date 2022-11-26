@@ -73,7 +73,7 @@ public class OrderServiceImpl implements OrderService {
 						join item_tbl i on od.item_id=i.id
 						join category_tbl c on cat_id=c.id
 						join member_tbl m on o.member_id=m.id
-						join address_tbl a on m.address_id=a.id where 1=1 
+						join address_tbl a on m.address_id=a.id where o.isActive=1 
 
 						""");
 		

@@ -86,10 +86,10 @@ body {
 </head>
 <body>
 
-	<c:url var="editCategory" value="/editcategory"></c:url>
-	<c:url var="editItem" value="/edititem"></c:url>
-	<c:url var="addcategory" value="/add-category"></c:url>
-	<c:url var="additem" value="/add-item"></c:url>
+	<c:url var="editCategory" value="/edit_category"></c:url>
+	<c:url var="editItem" value="/edit_item"></c:url>
+	<c:url var="addcategory" value="/add_category"></c:url>
+	<c:url var="additem" value="/add_item"></c:url>
 	<c:url var="member" value="/member"></c:url>
 
 	<c:url var="cart" value="/cart-orders"></c:url>

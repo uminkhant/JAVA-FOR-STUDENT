@@ -43,11 +43,12 @@
 						<td class="col">${m.address().city() }</td>
 						<td class="col">${m.address().township() }</td>
 						<td class="col">${m.address().street() }</td>
-						<td class="col">
-							<div class="">
-								<a href="" class="btn btn-outline-danger mr-2">Delete</a> <a
-									href="" class="btn btn-outline-warning mr-2">Edit</a>
-							</div>
+
+						<td class="col"><c:url var="updateMember"
+								value="/update-members">
+								<c:param name="Memberid" value="${m.id() }"></c:param>
+							</c:url> <a href="${updateMember }" class="btn btn-outline-warning mr-2">Edit</a>
+
 						</td>
 					</tr>
 				</c:forEach>

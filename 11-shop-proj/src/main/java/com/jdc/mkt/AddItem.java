@@ -18,11 +18,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/searchItem", "/add_item", "/edit_item" })
-@MultipartConfig
-public class ItemServlet extends HttpServlet {
+public class AddItem extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
+	
 	private ItemService iService;
 	private CategoryService catService;
 
@@ -32,18 +31,7 @@ public class ItemServlet extends HttpServlet {
 		catService = CategoryService.getCategoryService();
 
 	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		var path = switch (req.getServletPath()) {
-		case "/edit_item" -> "/edits/edit_item.jsp";
-		case "/add_item" -> "/edits/add_item.jsp";
-		default -> "/edits/add_item.jsp";
-		};
-
-		req.getRequestDispatcher(path).forward(req, resp);
-	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -54,14 +42,14 @@ public class ItemServlet extends HttpServlet {
 		var price = Integer.parseInt(req.getParameter("price") == null ? "0" : req.getParameter("price"));
 		var desc = req.getParameter("desc");
 
+	//	System.out.println("file system :::" + getServletContext().getContextPath());
+
 		Part part = req.getPart("imageFile");
 
 		if (null != part) {
 
-			var file = Path.of(getServletContext().getRealPath("/images"), part.getSubmittedFileName());
-			if (!file.toFile().exists()) {
-				Files.copy(part.getInputStream(), file);
-			}
+			var file=Path.of(getServletContext().getContextPath().concat("/images"), part.getSubmittedFileName());
+			Files.copy(part.getInputStream(), file);
 		}
 
 		switch (req.getServletPath()) {
@@ -73,6 +61,7 @@ public class ItemServlet extends HttpServlet {
 
 		case "/add_item":
 			List<Category> list = catService.findBy(category, size, sex);
+			System.out.println("category :" + list.get(0));
 			Item item = new Item(0, name, price, part.getSubmittedFileName(), desc, list.get(0));
 			int i = iService.createItem(item);
 			if (i > 0) {

@@ -55,7 +55,7 @@
 			</div>
 
 			<div class="col">
-				<form action="${searchItem }" method="post" id="searchForm">
+				<form action="${searchItem }" method="post" id="searchForm" enctype="multipart/form-data">
 					<div class="card  mb-2 card-style">
 						<div class="card-body">
 							<div class="card-title txt-color">

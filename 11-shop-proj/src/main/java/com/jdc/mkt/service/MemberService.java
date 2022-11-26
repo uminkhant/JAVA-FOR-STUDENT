@@ -7,7 +7,8 @@ import com.jdc.mkt.model.Member;
 public interface MemberService {
 
 	Member findMemberByNameAndPassword(String name,String password);
-	List<Member> findMember();
+	void deleteMemberById(int id);
+	List<Member> findMember(int id,String name);
 	int createMember(Member member);
 	
 	public static MemberService getMeberService() {

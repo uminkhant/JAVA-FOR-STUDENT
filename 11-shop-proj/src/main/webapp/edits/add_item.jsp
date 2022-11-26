@@ -16,45 +16,44 @@
 
 	<div class="form-outer ">
 
-		<form action="${addItem }" class="form-inner" method="post">
+		<form action="${addItem }" class="form-inner" method="post"
+			enctype="multipart/form-data">
 			<div>
-				<p class="txt-color fs-2"><i class="bi bi-star"></i>&nbsp;Item Form</p>
+				<p class="txt-color fs-2">
+					<i class="bi bi-star"></i>&nbsp;Item Form
+				</p>
 			</div>
 			<div class="mb-3">
 				<label for="item" class="form-label">Item Name</label> <input
-					id="item" type="text" class="form-control" name="itemName"
-					/>
+					id="item" type="text" class="form-control" name="itemName" />
 				<div id="itemName" class="form-text">Please fill up not more
 					than 20 character!</div>
 			</div>
-			
-			
+
+
 			<div class="mb-3">
 				<label for="price" class="form-label">Price </label> <input
-					id="price" type="text" class="form-control" name="price"
-					/>
-				
+					id="price" type="text" class="form-control" name="price" />
+
 			</div>
-			
+
 			<div class="mb-3">
-				<label for="img" class="form-label">Image </label> <input
-					id="img" type="text" class="form-control" name="img"
-					 />
-				
+				<label for="img" class="form-label">Image </label> <input id="img"
+					type="file" accept="image/*" class="form-control" name="imageFile" />
+
 			</div>
-			
+
 			<div class="mb-3">
 				<label for="desc" class="form-label">Description </label> <input
-					id="desc" type="text" class="form-control" name="desc"
-					 />
-				
+					id="desc" type="text" class="form-control" name="desc" />
+
 			</div>
-				<div>
+			<div>
 
 				<select class="form-select mb-2" name="category">
-				
+					<option selected>Please select category</option>
 					<c:forEach var="s" items="${categories_name }">
-						
+
 						<option value="${s }">${s }</option>
 					</c:forEach>
 				</select>
@@ -62,9 +61,9 @@
 			<div>
 
 				<select class="form-select mb-2" name="size">
-				
+					<option selected>Please select size</option>
 					<c:forEach var="s" items="${categories_size }">
-						
+
 						<option value="${s }">${s }</option>
 					</c:forEach>
 				</select>
@@ -72,10 +71,10 @@
 			<div>
 				<select class="form-select mb-2" name="sex">
 					<option selected>Please select sex</option>
-					
+
 					<c:forEach var="s" items="${categories_sex }">
 						<option value="${s }">${s}</option>
-						
+
 					</c:forEach>
 				</select>
 			</div>

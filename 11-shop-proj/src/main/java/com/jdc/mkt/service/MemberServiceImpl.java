@@ -79,13 +79,30 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Member> findMember() {
-		List<Member>list=new ArrayList<>();
-		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id ";
-		
-		
-		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+	public List<Member> findMember(int id, String name) {
+		List<Member> list = new ArrayList<>();
+		List<Object> tmp = new ArrayList<>();
 
+		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id  where m.isActive=1";
+
+		StringBuffer sb = new StringBuffer(sql);
+
+		if(id>0) {
+			sb.append(" and m.id=?");
+			tmp.add(id);
+		}
+		if(name != null && !name.isEmpty()) {
+			sb.append(" and m.login=?");
+			tmp.add(name);
+		}
+		
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sb.toString())) {
+
+			
+			for(int i = 0;i<tmp.size() ;i++) {
+				stmt.setObject(i+1, tmp.get(i));
+			}
+			
 			var rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -96,14 +113,27 @@ public class MemberServiceImpl implements MemberService {
 						MRole.valueOf(rs.getString("m.role").toUpperCase()));
 
 				list.add(m);
-				
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return list;
-		
+
+	}
+
+	@Override
+	public void deleteMemberById(int id) {
+		String sql = "delete member_tbl where id=?";
+		System.out.println("jdbc :"+id);
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
