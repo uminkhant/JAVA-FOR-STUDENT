@@ -6,12 +6,14 @@ import com.jdc.mkt.model.Member;
 
 public interface MemberService {
 
-	Member findMemberByNameAndPassword(String name,String password);
+	Member findMemberByName(String name);
 	void deleteMemberById(int id);
+	void updateMember(Member m);
 	List<Member> findMember(int id,String name);
 	int createMember(Member member);
 	
 	public static MemberService getMeberService() {
 		return new MemberServiceImpl();
 	}
+	
 }

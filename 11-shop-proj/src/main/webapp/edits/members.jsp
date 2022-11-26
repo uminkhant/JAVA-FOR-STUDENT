@@ -44,11 +44,17 @@
 						<td class="col">${m.address().township() }</td>
 						<td class="col">${m.address().street() }</td>
 
-						<td class="col"><c:url var="updateMember"
-								value="/update-members">
+						<td class="col">
+						<c:url var="editMember" value="/edit_members">
 								<c:param name="Memberid" value="${m.id() }"></c:param>
-							</c:url> <a href="${updateMember }" class="btn btn-outline-warning mr-2">Edit</a>
-
+							</c:url> <a href="${editMember }" class="btn btn-outline-warning mr-2">Edit</a>
+							
+							<c:url var="delete" value="/delete_member">
+								<c:param name="Memberid" value="${m.id() }"></c:param>
+							</c:url> <a href="${delete }" class="btn btn-outline-danger">Delete</a>
+							
+							
+							
 						</td>
 					</tr>
 				</c:forEach>

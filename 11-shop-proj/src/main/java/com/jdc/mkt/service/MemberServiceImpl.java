@@ -13,14 +13,13 @@ import java.util.List;
 public class MemberServiceImpl implements MemberService {
 
 	@Override
-	public Member findMemberByNameAndPassword(String name, String password) {
+	public Member findMemberByName(String name) {
 
-		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id where m.login=? and m.password=?";
+		String sql = "select m.id,m.login,m.password,m.phone1,m.phone2,m.role,a.id,a.street,a.township,a.city from member_tbl m join address_tbl a on m.address_id=a.id where m.login=? ";
 		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
 
 			stmt.setString(1, name);
-			stmt.setString(2, password);
-
+			
 			var rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -125,8 +124,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void deleteMemberById(int id) {
-		String sql = "delete member_tbl where id=?";
-		System.out.println("jdbc :"+id);
+		String sql = "update member_tbl set isActive=false where id=?";
+		
 		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
 			stmt.setInt(1, id);
 			stmt.executeUpdate();
@@ -135,5 +134,29 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 		}
 	}
+
+	@Override
+	public void updateMember(Member member) {
+		String sql = "update member_tbl set login=?,password=?,phone1=?,phone2=?,role=? where id=?";
+		
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+			
+			stmt.setString(1, member.name());
+			stmt.setString(2, member.password());
+			stmt.setString(3, member.phoneOne());
+			stmt.setString(4, member.phoneTwo());
+			stmt.setInt(5, member.role().ordinal());
+			stmt.setInt(6,
+					createAddress(member.address().city(), member.address().township(), member.address().street()));
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 
 }

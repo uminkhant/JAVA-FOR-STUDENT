@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/update-members", "/member"})
+@WebServlet(urlPatterns = { "/edit_members", "/member","/delete_member"})
 public class MemberServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -38,11 +38,20 @@ public class MemberServlet extends HttpServlet {
 			yield "/edits/members.jsp";
 		}
 
-		case "/update-members" -> {
+		case "/edit_members" -> {
 			list.clear();
 			list = memberService.findMember(id, null);
 			yield "/security/signUp.jsp";
 		}
+		case "/delete_member" -> {
+			list.clear();
+			System.out.println("member id ::"+id);
+			memberService.deleteMemberById(id);
+			
+			list = memberService.findMember(0, null);
+			yield "/edits/members.jsp";
+		}
+		
 		default -> null;
 		};
 		req.setAttribute("members", list);

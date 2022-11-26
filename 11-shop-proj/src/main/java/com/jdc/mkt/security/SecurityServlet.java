@@ -59,8 +59,9 @@ public class SecurityServlet extends HttpServlet {
 		resp.sendRedirect(req.getContextPath());
 	}
 
-	private void signUpMember(HttpServletRequest req, HttpServletResponse resp) {
+	private void signUpMember(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
+		int id = req.getParameter("id") == null ? 0 : Integer.parseInt(req.getParameter("id"));
 		var name = req.getParameter("user");
 		var pass = req.getParameter("pass");
 		var ph1 = req.getParameter("ph1");
@@ -68,16 +69,16 @@ public class SecurityServlet extends HttpServlet {
 		String city = req.getParameter("city");
 		String township = req.getParameter("township");
 		String street = req.getParameter("street");
-		
-		
-		
+
 		Address ad = new Address(0, city, township, street);
 		Member m = new Member(0, name, pass, ph1, ph2, ad, MRole.MEMBER);
 
-		int id = memberService.createMember(m);
-		
+		// checkMember(req, resp);
+
 		if (id > 0) {
-			req.setAttribute("message", "Successfully save member");
+			memberService.updateMember(m);
+		} else {
+			memberService.createMember(m);
 		}
 
 	}
@@ -86,12 +87,18 @@ public class SecurityServlet extends HttpServlet {
 
 		var userName = req.getParameter("user");
 		var password = req.getParameter("pass");
-		Member member = memberService.findMemberByNameAndPassword (userName, password);
+		Member member = memberService.findMemberByName(userName);
 
-		if (member != null) {
-			req.getSession(true).setAttribute("loginUser", member);
+		try {
+			if (!member.password().equals(password)) {
+				throw new NullPointerException("Password not match !");
+			}
 
-		} else {
+			if (member != null) {
+				req.getSession(true).setAttribute("loginUser", member);
+
+			}
+		} catch (Exception e) {
 			req.getRequestDispatcher("/security/error.jsp").forward(req, resp);
 		}
 
