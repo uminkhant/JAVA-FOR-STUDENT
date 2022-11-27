@@ -15,7 +15,9 @@
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4 ">
 
-		<h3 class="txt-color"><i class="bi bi-tags"></i>&nbsp;CATEGORY</h3>
+		<h3 class="txt-color">
+			<i class="bi bi-tags"></i>&nbsp;CATEGORY
+		</h3>
 		<table class="table">
 			<thead>
 				<tr>
@@ -37,8 +39,15 @@
 					<td class="col">${c.sex() }</td>
 					<td class="col">
 						<div class="">
-							<a href="" class="btn btn-outline-danger mr-2">Delete</a> 
-							<a href="" class="btn btn-outline-warning mr-2">Edit</a>
+							<c:url var="deleteCat" value="/delete_category">
+								<c:param name="cat_id" value="${c.id() }"></c:param>
+							</c:url>
+							<a href="${deleteCat }" class="btn btn-outline-danger mr-2">Delete</a>
+							
+							<c:url var="updateCat" value="/update_category">
+								<c:param name="cat_id" value="${c.id() }"></c:param>
+							</c:url>
+							<a href="${updateCat }" class="btn btn-outline-warning mr-2">Edit</a>
 						</div>
 					</td>
 				</tr>

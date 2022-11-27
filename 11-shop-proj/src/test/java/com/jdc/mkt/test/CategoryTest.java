@@ -37,7 +37,7 @@ class CategoryTest {
 	@Test
 	@Order(2)
 	void findBy() {
-		assertEquals(8, catService.findBy(null, null, null).size());
+		assertEquals(8, catService.findBy(0,null, null, null).size());
 	}
 
 }

@@ -18,7 +18,7 @@
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col-9">
-				<form class="d-flex mb-2" action="${searchItem }" method="post">
+				<form class="d-flex mb-2" action="${searchItem }" method="post" enctype="multipart/form-data">
 					<input class="form-control me-2" type="search" placeholder="Search"
 						aria-label="Search" name=itemName>
 					<button class="button-color anchor-link" type="submit">

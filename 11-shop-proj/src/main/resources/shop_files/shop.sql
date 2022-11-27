@@ -36,7 +36,7 @@ insert into member_tbl values(null,'mkt','123','09242222332','09345353344',1,2,t
 
 create table category_tbl(
 	id int primary key auto_increment,
-	cat_name varchar(8) not null,
+	cat_name varchar(50) not null,
 	cat_size enum('SMALL','MEDIUM','LARGE'),
 	cat_sex enum('MALE','FEMALE','UNISEX'),
 	isActive boolean  default true
@@ -56,10 +56,10 @@ insert into category_tbl values(null,'Shoe',3,3,true);
 create table item_tbl(
 
 	id int primary key auto_increment,
-	item_name varchar(20) not null,
+	item_name varchar(50) not null,
 	item_price int not null,
 	item_img varchar(50)  not null,
-	item_desc varchar(255) ,
+	item_desc TEXT ,
 	cat_id int not null,
 	crd_dt TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
 	isActive boolean  default true,

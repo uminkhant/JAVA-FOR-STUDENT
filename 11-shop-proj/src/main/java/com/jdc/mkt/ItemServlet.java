@@ -18,13 +18,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-@WebServlet(urlPatterns = { "/searchItem", "/add_item", "/edit_item" })
+@WebServlet(urlPatterns = { "/searchItem", "/add_item", "/edit_item", "/update_item", "/delete_item" })
 @MultipartConfig
 public class ItemServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ItemService iService;
 	private CategoryService catService;
+	private Item item;
 
 	@Override
 	public void init() throws ServletException {
@@ -35,9 +36,25 @@ public class ItemServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		var id = req.getParameter("item_id") == null ? 0 : Integer.parseInt(req.getParameter("item_id"));
+
 		var path = switch (req.getServletPath()) {
 		case "/edit_item" -> "/edits/edit_item.jsp";
-		case "/add_item" -> "/edits/add_item.jsp";
+		case "/add_item", "/update_item" -> {
+			
+			if (id > 0) {
+				item = iService.findBy(id, null, 0, null, null, null).get(0);
+				req.setAttribute("item", item);
+			}
+			yield "/edits/add_item.jsp";
+		}
+
+		case "/delete_item" -> {
+			iService.deleteItemById(id);
+			req.setAttribute("items", iService.findBy(0, null, 0, null, null, null));
+			yield "/edits/edit_item.jsp";
+		}
 		default -> "/edits/add_item.jsp";
 		};
 
@@ -47,6 +64,7 @@ public class ItemServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		var id = req.getParameter("item_id") == null ? 0 : Integer.parseInt(req.getParameter("item_id"));
 		var category = req.getParameter("category");
 		var size = req.getParameter("size");
 		var sex = req.getParameter("sex");
@@ -72,13 +90,19 @@ public class ItemServlet extends HttpServlet {
 			break;
 
 		case "/add_item":
-			List<Category> list = catService.findBy(category, size, sex);
-			Item item = new Item(0, name, price, part.getSubmittedFileName(), desc, list.get(0));
-			int i = iService.createItem(item);
-			if (i > 0) {
-				getServletContext().setAttribute("items", iService.findBy(0, null, 0, null, null, null));
+			List<Category> list = catService.findBy(0, category, size, sex);
+			var path = "";
+			if (id > 0) {
+				Item updItem = new Item(item.id(), item.name(), price, part.getSubmittedFileName(), desc, item.cat());
+				iService.updateItem(updItem);
+				path = "/edits/edit_item.jsp";
+			} else {
+				Item crdItem = new Item(0, name, price, part.getSubmittedFileName(), desc, list.get(0));
+				iService.createItem(crdItem);
+				path = "/edits/add_item.jsp";
 			}
-			req.getRequestDispatcher("/edits/add_item.jsp").forward(req, resp);
+			getServletContext().setAttribute("items", iService.findBy(0, null, 0, null, null, null));
+			req.getRequestDispatcher(path).forward(req, resp);
 
 			break;
 

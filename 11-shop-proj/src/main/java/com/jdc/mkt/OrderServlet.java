@@ -14,35 +14,53 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/order-detail-list", "/update-delivered-date" })
+@WebServlet(urlPatterns = { "/order-detail-list", "/update-delivered-date", "/search-deails" })
+
 public class OrderServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	private OrderService orderService;
-	private List<OrderDetail>list;
+	private List<OrderDetail> list;
 
 	@Override
 	public void init() throws ServletException {
 		orderService = OrderService.getOrderServivce();
-		list=new ArrayList<>();
+		list = new ArrayList<>();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		
+
 		switch (req.getServletPath()) {
-			
-		case"/order-detail-list":
-			
+
+		case "/order-detail-list":
+
 			break;
-		case"/update-delivered-date":
-			int order_id=Integer.parseInt(req.getParameter("order_id"));
-			orderService.updateDeliveredDate(LocalDate.now(),order_id);
+		case "/update-delivered-date":
+			int order_id = Integer.parseInt(req.getParameter("order_id"));
+			orderService.updateDeliveredDate(LocalDate.now(), order_id);
 			break;
 		}
-		 list = orderService.getOrderDetail(null, null, null, null, null, null);
+		list = orderService.getOrderDetail(null, null, null, null, null, null);
+		req.setAttribute("orderDetails", list);
+
+		req.getRequestDispatcher("/edits/orderdetails.jsp").forward(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		var member = req.getParameter("member");
+		var category = req.getParameter("category");
+		var size = req.getParameter("size");
+		var sex = req.getParameter("sex");
+
+		
+		list.clear();
+		list = orderService.getOrderDetail(member, category, size, sex, null, null);
+
+		System.out.println("search " + list.size());
 		req.setAttribute("orderDetails", list);
 
 		req.getRequestDispatcher("/edits/orderdetails.jsp").forward(req, resp);

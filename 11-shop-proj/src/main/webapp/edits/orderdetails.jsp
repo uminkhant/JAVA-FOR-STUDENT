@@ -11,19 +11,22 @@
 	<c:url var="head" value="../general/header.jsp"></c:url>
 	<c:url var="foot" value="../general/footer.jsp"></c:url>
 	<c:url var="orderdetails" value="/order-detail-list"></c:url>
-	
+	<c:url var="searchDetails" value="/search-deails"></c:url>
+
 	<c:import url="${head }"></c:import>
 	<div class="container mt-4 ">
-		<h3 class="txt-color"><i class="bi bi-stack"></i>&nbsp;Order Details</h3>
-		<form action="${searchItem }" method="post">
+		<h3 class="txt-color">
+			<i class="bi bi-stack"></i>&nbsp;Order Details
+		</h3>
+		<form action="${searchDetails }" method="post">
 			<div class="row mb-2">
 				<div class="col-4 ">
 					<input class="form-control " type="search" placeholder="Search"
-						aria-label="Search" name=itemName>
+						aria-label="Search" name="member">
 				</div>
 				<div class="col-2">
 					<select class="form-select" name="category">
-					<option selected>Please select Category</option>
+						<option value="">Select One Category</option>
 						<c:forEach var="s" items="${categories_name }">
 							<option value="${s }">${s }</option>
 						</c:forEach>
@@ -31,7 +34,7 @@
 				</div>
 				<div class="col-2">
 					<select class="form-select" name="size">
-					<option selected>Please select size</option>
+					<option value="">Select One Size</option>
 						<c:forEach var="s" items="${categories_size }">
 							<option value="${s }">${s }</option>
 						</c:forEach>
@@ -39,7 +42,7 @@
 				</div>
 				<div class="col-2">
 					<select class="form-select " name="sex">
-						<option selected>Please select sex</option>
+					<option value="">Select One Sex Type</option>
 						<c:forEach var="s" items="${categories_sex }">
 							<option value="${s }">${s}</option>
 						</c:forEach>
@@ -82,13 +85,12 @@
 							<td class="col">${od.getQty() }</td>
 							<td class="col">${od.getTotal() }</td>
 							<td class="col">${od.getOrder().getOrder_dt() }</td>
-							<td class="col">
-							<c:url value="/update-delivered-date" var="updateDeliveredDate">
-										<c:param name="order_id" value="${od.getOrder().getId() }"></c:param>
-									</c:url>
-							<c:if
-									test="${od.getOrder().getDelivered_dt()==null  }">
-									<a href="${updateDeliveredDate }" class="text-danger anchor-link  mr-2">Need to ship</a>
+							<td class="col"><c:url value="/update-delivered-date"
+									var="updateDeliveredDate">
+									<c:param name="order_id" value="${od.getOrder().getId() }"></c:param>
+								</c:url> <c:if test="${od.getOrder().getDelivered_dt()==null  }">
+									<a href="${updateDeliveredDate }"
+										class="text-danger anchor-link  mr-2">Need to ship</a>
 								</c:if> <c:if test="${od.getOrder().getDelivered_dt()!=null  }">
 								${od.getOrder().getDelivered_dt()}
 							</c:if></td>

@@ -60,7 +60,7 @@ public class AddItem extends HttpServlet{
 			break;
 
 		case "/add_item":
-			List<Category> list = catService.findBy(category, size, sex);
+			List<Category> list = catService.findBy(0,category, size, sex);
 			System.out.println("category :" + list.get(0));
 			Item item = new Item(0, name, price, part.getSubmittedFileName(), desc, list.get(0));
 			int i = iService.createItem(item);

@@ -34,11 +34,16 @@ class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public List<Category> findBy(String name, String size, String sex) {
+	public List<Category> findBy(int id,String name, String size, String sex) {
 
 		StringBuffer sb = new StringBuffer("select * from category_tbl  where isActive=1 ");
 		List<Object> list = new ArrayList<>();
 		List<Category>categories=new ArrayList<>();
+		
+		if(id>0) {
+			sb.append(" and id=?");
+			list.add(id);
+		}
 
 		if (name != null && !name.isEmpty()) {
 			sb.append(" and cat_name=?");
@@ -74,6 +79,36 @@ class CategoryServiceImpl implements CategoryService {
 			e.printStackTrace();
 		}
 		return categories;
+	}
+
+	@Override
+	public void updateCategory(Category cat) {
+		String sql = "update  category_tbl set cat_name=?,cat_size=?,cat_sex=? where id=?";
+		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql)) {
+
+			stmt.setString(1, cat.name());
+			stmt.setString(2, cat.size());
+			stmt.setString(3, cat.sex());
+			stmt.setInt(4, cat.id());
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteCategory(int id) {
+		String sql = "update category_tbl set isActive=false where id=?";
+
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -17,51 +17,105 @@
 
 	<div class="form-outer ">
 
+		<c:choose>
+			<c:when test="${category!=null }">
+				<form action="${addCat }" class="form-inner" method="post">
+					<div>
+						<p class="txt-color fs-2">
+							<i class="bi bi-tags"></i>&nbsp;Category Form
+						</p>
+					</div>
+					<div class="mb-3">
+						<input id="cat" type="text" class="form-control d-none" name="cat_id"
+							aria-describedby="id" value="${category.id() }" />
+
+					</div>
+
+					<div class="mb-3">
+						<label for="cat" class="form-label">Category Name</label> <input
+							id="cat" type="text" class="form-control" name="catName"
+							aria-describedby="catName" value="${category.name() }" disabled="disabled"/>
+
+					</div>
+					<div>
+
+						<select class="form-select mb-2" name="size">
+							<option value="">Please select size</option>
+
+							<c:forEach var="s" items="${categories_size }">
+
+								<option value="${s }">${s }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<select class="form-select mb-2" name="sex">
+							<option value="">Please select sex</option>
+
+							<c:forEach var="s" items="${categories_sex }">
+
+								<option value="${s }">${s }</option>
+
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<button class="button-color  mr-2" type="submit">Save</button>
+						<button class="button-color " type="reset">cancel</button>
+					</div>
+					<c:if test="${not empty message and message!=null }">
+						<p class="txt-color">${message }</p>
+					</c:if>
+				</form>
+			</c:when>
+			<c:otherwise>
+				<form action="${addCat }" class="form-inner" method="post">
+					<div>
+						<p class="txt-color fs-2">
+							<i class="bi bi-tags"></i>&nbsp;Category Form
+						</p>
+					</div>
 
 
-		<form action="${addCat }" class="form-inner" method="post">
-			<div>
-				<p class="txt-color fs-2"><i class="bi bi-tags"></i>&nbsp;Category Form</p>
-			</div>
+					<div class="mb-3">
+						<label for="cat" class="form-label">Category Name</label> <input
+							id="cat" type="text" class="form-control" name="catName"
+							aria-describedby="catName" />
+						<div id="catName" class="form-text">Please fill up not more
+							than 20 character!</div>
+					</div>
+					<div>
 
+						<select class="form-select mb-2" name="size">
+							<option selected>Please select size</option>
 
-			<div class="mb-3">
-				<label for="cat" class="form-label">Category Name</label> <input
-					id="cat" type="text" class="form-control" name="catName"
-					aria-describedby="catName" />
-				<div id="catName" class="form-text">Please fill up not more
-					than 20 character!</div>
-			</div>
-			<div>
+							<c:forEach var="s" items="${categories_size }">
 
-				<select class="form-select mb-2" name="size">
-					<option selected>Please select size</option>
+								<option value="${s }">${s }</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<select class="form-select mb-2" name="sex">
+							<option selected>Please select sex</option>
 
-					<c:forEach var="s" items="${categories_size }">
+							<c:forEach var="s" items="${categories_sex }">
 
-						<option value="${s }">${s }</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div>
-				<select class="form-select mb-2" name="sex">
-					<option selected>Please select sex</option>
+								<option value="${s }">${s }</option>
 
-					<c:forEach var="s" items="${categories_sex }">
-
-						<option value="${s }">${s }</option>
-
-					</c:forEach>
-				</select>
-			</div>
-			<div>
-				<button class="button-color  mr-2" type="submit">Save</button>
-				<button class="button-color " type="reset">cancel</button>
-			</div>
-			<c:if test="${not empty message and message!=null }">
-				<p class="txt-color">${message }</p>
-			</c:if>
-		</form>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<button class="button-color  mr-2" type="submit">Save</button>
+						<button class="button-color " type="reset">cancel</button>
+					</div>
+					<c:if test="${not empty message and message!=null }">
+						<p class="txt-color">${message }</p>
+					</c:if>
+				</form>
+			</c:otherwise>
+		</c:choose>
 	</div>
 
 	<c:import url="${foot }"></c:import>

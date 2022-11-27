@@ -18,7 +18,9 @@
 
 	<div class="container mt-4 ">
 
-		<h3 class="txt-color"><i class="bi bi-star"></i>&nbsp;Item</h3>
+		<h3 class="txt-color">
+			<i class="bi bi-star"></i>&nbsp;Item
+		</h3>
 		<table class="table">
 			<thead>
 				<tr>
@@ -46,10 +48,16 @@
 					<td class="col">${c.cat().sex() }</td>
 					<td class="col">
 						<div class="">
-							<a href="" class="btn btn-outline-danger mr-2 mb-1">Delete</a> <a
-								href="" class="btn btn-outline-warning mr-2">Edit</a>
-						</div>
-					</td>
+						<c:url var="deleteItem" value="/delete_item">
+							<c:param name="item_id" value="${c.id() }"></c:param>
+						</c:url>
+							<a href="${deleteItem }" class="btn btn-outline-danger mr-2 mb-1">Delete</a>
+							
+							 <c:url var="updateItem" value="/update_item">
+							<c:param name="item_id" value="${c.id() }"></c:param>
+						</c:url>
+							<a href="${updateItem }" class="btn btn-outline-warning mr-2">Edit</a>
+						</div></td>
 				</tr>
 			</c:forEach>
 		</table>

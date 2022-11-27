@@ -22,14 +22,14 @@ public class HomeListener implements ServletContextListener{
 		
 		
 		
-		List<String>listCatName=cs.findBy(null, null, null).stream().map(c->c.name()).distinct().toList();
-		List<String>listCatSize=cs.findBy(null, null, null).stream().map(c->c.size()).distinct().toList();
-		List<String>listCatSex=cs.findBy(null, null, null).stream().map(c->c.sex()).distinct().toList();
+		List<String>listCatName=cs.findBy(0,null, null, null).stream().map(c->c.name()).distinct().toList();
+		List<String>listCatSize=cs.findBy(0,null, null, null).stream().map(c->c.size()).distinct().toList();
+		List<String>listCatSex=cs.findBy(0,null, null, null).stream().map(c->c.sex()).distinct().toList();
 		
 		sce.getServletContext().setAttribute("categories_name", listCatName);
 		sce.getServletContext().setAttribute("categories_size", listCatSize);
 		sce.getServletContext().setAttribute("categories_sex", listCatSex);
-		sce.getServletContext().setAttribute("categories", cs.findBy(null, null, null));
+		sce.getServletContext().setAttribute("categories", cs.findBy(0,null, null, null));
 		
 		sce.getServletContext().setAttribute("items", is.findBy(0,null, 0, null, null, null));
 		

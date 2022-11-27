@@ -62,10 +62,11 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderDetail> getOrderDetail(String member, String catgory, String sex, String size, LocalDate st_dt,
+	public List<OrderDetail> getOrderDetail(String member, String category, String sex, String size, LocalDate st_dt,
 			LocalDate to_dt) {
 		List<OrderDetail>od_list=new ArrayList<>();
-
+		List<Object>tmp = new ArrayList<>();
+		
 		StringBuffer sb = new StringBuffer(
 				"""
 						select m.id, m.login,m.password,m.phone1,m.phone2,a.id,a.city,a.township,a.street,o.id,o.discount,o.delivered_dt,o.order_dt,i.item_name,i.id,i.item_price,i.item_img,i.item_desc,od.id,od.qty,od.total,c.id,c.cat_name,c.cat_size,c.cat_sex
@@ -77,14 +78,32 @@ public class OrderServiceImpl implements OrderService {
 
 						""");
 		
-		sb.append("order by o.id desc");
+		if(null != member && !member.isEmpty()) {
+			sb.append(" and  m.login=?");
+			tmp.add(member);
+		}
+		
+		if(null != category && !category.isEmpty() ) {
+			sb.append(" and c.cat_name=?");
+			tmp.add(category);
+		}	
+		if(null != sex && !sex.isEmpty() ) {
+			sb.append(" and c.cat_sex=?");
+			tmp.add(sex);
+		}	
+		if(null != size && !size.isEmpty() ) {
+			sb.append(" and c.cat_size=?");
+			tmp.add(size);
+		}
+		sb.append(" order by o.id desc");
 
 		try (var con = getConnection(); var stmt = con.prepareStatement(sb.toString())) {
-
-			var rs = stmt.executeQuery();
 			
-			while (rs.next()) {
-				
+			for(int i=0;i<tmp.size();i++) {
+				stmt.setObject(i+1, tmp.get(i));
+			}		
+			var rs = stmt.executeQuery();		
+			while (rs.next()) {			
 				Address a=new Address(rs.getInt("a.id"),rs.getString("a.city") , rs.getString("a.township"), rs.getString("a.street"));
 				Member m=new Member(rs.getInt("m.id"), rs.getString("m.login"), rs.getString("m.password"), rs.getString("m.phone1"), rs.getString("m.phone2"), a, null);
 				Category c=new Category(rs.getInt("c.id"), rs.getString("c.cat_name"), rs.getString("c.cat_size"), rs.getString("c.cat_sex"));
@@ -94,10 +113,8 @@ public class OrderServiceImpl implements OrderService {
 				o.setId(rs.getInt("o.id"));
 				o.setDelivered_dt(rs.getDate("o.delivered_dt")!=null? rs.getDate("o.delivered_dt").toLocalDate():null);
 				o.setMember(m);
-				o.setOrder_dt(rs.getDate("o.order_dt").toLocalDate());
-				
-				rs.getString("m.login");
-				
+				o.setOrder_dt(rs.getDate("o.order_dt").toLocalDate());				
+				rs.getString("m.login");	
 				OrderDetail od=new OrderDetail();
 				od.setId(rs.getInt("od.id"));
 				od.setQty(rs.getInt("od.qty"));
@@ -111,27 +128,22 @@ public class OrderServiceImpl implements OrderService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return od_list;
 	}
 
 	@Override
 	public void updateDeliveredDate(LocalDate delivered_dt,int order_id) {
 		String sql="update order_tbl o join order_details_tbl od on od.order_id=o.id set o.delivered_dt=? where o.id=?";
-		
-
 		try (var con = getConnection(); var stmt = con.prepareStatement(sql)) {
 			
 			stmt.setDate(1, Date.valueOf( delivered_dt));
-			stmt.setInt(2, order_id);
-			
+			stmt.setInt(2, order_id);		
 			stmt.executeLargeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 			
-		
 		
 	}
 

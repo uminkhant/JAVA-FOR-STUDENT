@@ -15,13 +15,14 @@ class ItemServiceImpl implements ItemService {
 	public int createItem(Item item) {
 
 		String sql = "insert into item_tbl(item_name,item_price,item_img,item_desc,cat_id) values(?,?,?,?,?)";
-		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)) {
+		try (Connection conn = getConnection();
+				var stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
 			stmt.setString(1, item.name());
 			stmt.setInt(2, item.price());
 			stmt.setString(3, item.img());
 			stmt.setString(4, item.desc());
-			
+
 			stmt.setInt(5, item.cat().id());
 
 			return stmt.executeUpdate();
@@ -29,82 +30,107 @@ class ItemServiceImpl implements ItemService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
 
 	@Override
-	public List<Item> findBy(int id,String iName, int iPrice,String catName,String catSize,String catSex) {
+	public List<Item> findBy(int id, String iName, int iPrice, String catName, String catSize, String catSex) {
 
 		StringBuffer sb = new StringBuffer(
 				"Select i.id,i.item_name,i.item_price,i.item_img,i.item_desc,c.id,c.cat_name,c.cat_size,c.cat_sex from item_tbl i join category_tbl c on i.cat_id=c.id  where i.isActive=1");
 		List<Item> items = new ArrayList<>();
-		List<Object>tmp=new ArrayList<>();
-		
-		if(id>0) {
+		List<Object> tmp = new ArrayList<>();
+
+		if (id > 0) {
 			sb.append(" and i.id=?");
 			tmp.add(id);
 		}
 
-		if(iName != null && !iName.isEmpty()) {
-			
-			sb.append(" and lower(i.item_name) =?");
+		if (iName != null && !iName.isEmpty()) {
+
+			sb.append(" and lower(i.item_name)=?");
 			tmp.add(iName.toLowerCase());
 		}
-		
-		if(iPrice>0) {
-			
+
+		if (iPrice > 0) {
+
 			sb.append(" and i.item_price =?");
 			tmp.add(iPrice);
 		}
-		if(catName != null && !catName.isEmpty()) {
+		if (catName != null && !catName.isEmpty()) {
 			sb.append(" and c.cat_name =?");
 			tmp.add(catName);
 		}
-		
-		if(catSize != null && !catSize.isEmpty()) {
+
+		if (catSize != null && !catSize.isEmpty()) {
 			sb.append(" and c.cat_size =?");
 			tmp.add(catSize);
 		}
-		
-		if(catSex != null && !catSex.isEmpty()) {
+
+		if (catSex != null && !catSex.isEmpty()) {
 			sb.append(" and c.cat_sex =?");
 			tmp.add(catSex);
 		}
-		
+
 		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sb.toString())) {
 
-			for(int i=0;i<tmp.size();i++) {
-				stmt.setObject(i+1, tmp.get(i));
+			for (int i = 0; i < tmp.size(); i++) {
+				stmt.setObject(i + 1, tmp.get(i));
 			}
-			
-			var rs=stmt.executeQuery();
-			
-			while(rs.next()) {
-				
-				Category category=new Category(
-						
-						rs.getInt("c.id"),
-						 rs.getString("c.cat_name"),
-						 rs.getString("c.cat_size"),
-						 rs.getString("c.cat_sex"));
-				
-				Item item=new Item(
-						rs.getInt("i.id"),
-						rs.getString("i.item_name"), 
-						rs.getInt("i.item_price"),
-						rs.getString("i.item_img"),
-						rs.getString("i.item_desc"),
-						category);
-				
+
+			var rs = stmt.executeQuery();
+
+			while (rs.next()) {
+
+				Category category = new Category(
+
+						rs.getInt("c.id"), rs.getString("c.cat_name"), rs.getString("c.cat_size"),
+						rs.getString("c.cat_sex"));
+
+				Item item = new Item(rs.getInt("i.id"), rs.getString("i.item_name"), rs.getInt("i.item_price"),
+						rs.getString("i.item_img"), rs.getString("i.item_desc"), category);
+
 				items.add(item);
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return items;
+	}
+
+	@Override
+	public void deleteItemById(int id) {
+		String sql = "update item_tbl set isActive=false where id=?";
+
+		try (Connection con = getConnection(); var stmt = con.prepareStatement(sql)) {
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void updateItem(Item item) {
+		String sql = "update  item_tbl set item_name=?,item_price=?,item_img=?,item_desc=? where id=?";
+		try (Connection conn = getConnection(); var stmt = conn.prepareStatement(sql)) {
+
+			stmt.setString(1, item.name());
+			stmt.setInt(2, item.price());
+			stmt.setString(3, item.img());
+			stmt.setString(4, item.desc());
+			stmt.setInt(5, item.id());
+			
+			stmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
