@@ -1,6 +1,9 @@
 package com.mkt.demo.ds;
 
-public enum CurrencyId {
+import com.demo.annotation.Validated;
 
-    US,EURO;
+@Validated
+public enum CurrencyId {
+    US,
+    EURO
 }

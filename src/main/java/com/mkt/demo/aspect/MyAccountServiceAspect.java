@@ -13,18 +13,20 @@ import java.util.Arrays;
 @Component
 public class MyAccountServiceAspect {
 
-    //using cjlib proxy
-    // same with this and target in cjlib proxy
+    @Pointcut("target(com.demo.service.MyAccountService)")
+    public void thisMyAccountServicePointCut(){}
 
-    @Pointcut("this(com.mkt.demo.service.MyAccountService)")
-    public void thisMyAccountServicePoinCut(){
-
-    }
-
-    @Before("thisMyAccountServicePoinCut()")
+    //@Before("thisMyAccountServicePointCut()")
     public void beforeMyAccountAdvice(JoinPoint joinPoint){
-        System.out.println(joinPoint.getTarget().getClass() .getSimpleName());
-        System.out.println("%s method is invoked with %s parameter before advice in [%s]."
-                .formatted(joinPoint.getSignature().getName(), Arrays.toString(joinPoint.getArgs()), LocalDateTime.now()));
+        String className=joinPoint.getTarget().getClass().getSimpleName();
+
+        System.out.println(
+                String.format("%s'%s method is invoked with %s parameter before " +
+                                "advice in [%s]."
+                        ,className
+                        ,joinPoint.getSignature().getName(),
+                        Arrays.toString(joinPoint.getArgs()),
+                        LocalDateTime.now())
+        );
     }
 }
