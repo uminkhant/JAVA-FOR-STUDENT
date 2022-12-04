@@ -16,9 +16,13 @@
 
 <body>
 
+<div class="container mt-4">
+	<a href="test">Test InitParameter</a>
+</div>
+
 	<div class="container mt-4">
 		<p class="text-danger fs-3">Hello Servlet</p>
-		<form action="student" class="form" method="post">
+		<form action="test" class="form" method="post">
 			<div class="form-group mb-2">
 				<label for="">Student Name :</label> <input type="text"
 					class="form-control" name="st_name" />
