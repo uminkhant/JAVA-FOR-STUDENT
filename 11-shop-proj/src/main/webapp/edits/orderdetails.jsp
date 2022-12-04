@@ -48,6 +48,10 @@
 						</c:forEach>
 					</select>
 				</div>
+				<div class="d-flex ">
+				<input type="date" id="from_dt"  class="me-2" name="from_dt"/>
+				<input type="date" id="to_dt"  name="to_dt"/>
+				</div>
 				<div class="col ms-4">
 					<button class="button-color anchor-link " type="submit">
 						<i class="bi bi-search"></i>&nbsp;Search

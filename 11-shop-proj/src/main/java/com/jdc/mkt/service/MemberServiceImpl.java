@@ -145,7 +145,7 @@ public class MemberServiceImpl implements MemberService {
 			stmt.setString(2, member.password());
 			stmt.setString(3, member.phoneOne());
 			stmt.setString(4, member.phoneTwo());
-			stmt.setInt(5, member.role().ordinal());
+			stmt.setInt(5,member.role().ordinal());
 			stmt.setInt(6,
 					createAddress(member.address().city(), member.address().township(), member.address().street()));
 			

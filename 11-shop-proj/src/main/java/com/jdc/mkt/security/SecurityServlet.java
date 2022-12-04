@@ -66,18 +66,23 @@ public class SecurityServlet extends HttpServlet {
 		var pass = req.getParameter("pass");
 		var ph1 = req.getParameter("ph1");
 		var ph2 = req.getParameter("ph2");
+		
 		String city = req.getParameter("city");
 		String township = req.getParameter("township");
 		String street = req.getParameter("street");
 
-		Address ad = new Address(0, city, township, street);
-		Member m = new Member(0, name, pass, ph1, ph2, ad, MRole.MEMBER);
+		
 
 		// checkMember(req, resp);
 
 		if (id > 0) {
+			Address ad = new Address(0, city, township, street);
+			MRole role=MRole.valueOf(req.getParameter("role"));
+			Member m = new Member(0, name, pass, ph1, ph2, ad,role );
 			memberService.updateMember(m);
 		} else {
+			Address ad = new Address(0, city, township, street);
+			Member m = new Member(0, name, pass, ph1, ph2, ad, MRole.MEMBER);
 			memberService.createMember(m);
 		}
 

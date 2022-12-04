@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderDetail> getOrderDetail(String member, String category, String sex, String size, LocalDate st_dt,
+	public List<OrderDetail> getOrderDetail(String member, String category, String sex, String size, LocalDate from_dt,
 			LocalDate to_dt) {
 		List<OrderDetail>od_list=new ArrayList<>();
 		List<Object>tmp = new ArrayList<>();
@@ -94,6 +94,16 @@ public class OrderServiceImpl implements OrderService {
 		if(null != size && !size.isEmpty() ) {
 			sb.append(" and c.cat_size=?");
 			tmp.add(size);
+		}
+		
+		if(from_dt!=null) {
+			sb.append(" and o.delivered_dt >=?");
+			tmp.add(from_dt);
+		}
+		
+		if(to_dt!=null) {
+			sb.append(" and o.delivered_dt <=?");
+			tmp.add(to_dt);
 		}
 		sb.append(" order by o.id desc");
 

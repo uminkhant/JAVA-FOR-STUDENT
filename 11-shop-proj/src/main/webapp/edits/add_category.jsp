@@ -34,7 +34,7 @@
 					<div class="mb-3">
 						<label for="cat" class="form-label">Category Name</label> <input
 							id="cat" type="text" class="form-control" name="catName"
-							aria-describedby="catName" value="${category.name() }" disabled="disabled"/>
+							aria-describedby="catName" value="${category.name() }" disabled/>
 
 					</div>
 					<div>

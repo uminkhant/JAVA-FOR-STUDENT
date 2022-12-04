@@ -35,6 +35,13 @@
 			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
 			<version>3.0.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.ocpsoft.prettytime/prettytime-integration-jstl -->
+		<dependency>
+			<groupId>org.ocpsoft.prettytime</groupId>
+			<artifactId>prettytime-integration-jstl</artifactId>
+			<version>5.0.6.Final</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

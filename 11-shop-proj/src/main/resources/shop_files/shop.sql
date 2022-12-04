@@ -22,7 +22,7 @@ create table member_tbl(
 	phone1 varchar(12)not null,
 	phone2 varchar(12),
 	address_id int not null,
-	role enum('Member','Admin') not null default 'Member',
+	role enum('ADMIN','MEMBER') not null default 'MEMBER',
 	isActive boolean not null default true,
 	foreign key(address_id)references address_tbl(id)
 	on update cascade on delete cascade

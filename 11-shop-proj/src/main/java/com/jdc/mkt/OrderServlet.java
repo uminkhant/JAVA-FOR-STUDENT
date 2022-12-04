@@ -55,10 +55,12 @@ public class OrderServlet extends HttpServlet {
 		var category = req.getParameter("category");
 		var size = req.getParameter("size");
 		var sex = req.getParameter("sex");
-
+		System.out.println(req.getParameter("from_dt"));
+		var from_dt=LocalDate.parse(req.getParameter("from_dt"));
+		var to_dt=LocalDate.parse(req.getParameter("to_dt"));
 		
 		list.clear();
-		list = orderService.getOrderDetail(member, category, size, sex, null, null);
+		list = orderService.getOrderDetail(member, category, size, sex, from_dt, to_dt);
 
 		System.out.println("search " + list.size());
 		req.setAttribute("orderDetails", list);
