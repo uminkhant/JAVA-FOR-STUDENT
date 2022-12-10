@@ -12,27 +12,19 @@
 </head>
 
 <style>
-.nav-link-space {
-	margin-right: 50px;
-}
 
-#inc {
-	color: red;
-}
-li{
-
-	font-size: 20px;
-}
 </style>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-		<ul class="navbar-nav">
-			<li class="nav-item"><a id="inc" class="nav-link nav-link-space"
+		<ul class="navbar-nav mx-3">
+			<li class="nav-item"><a class="nav-link "
 				href="include">Include</a></li>
-			<li class="nav-item"><a class="nav-link nav-link-space"
+			<li class="nav-item"><a class="nav-link "
 				href="forward">Forward</a></li>
 			<li class="nav-item"><a class="nav-link" href="redirect">Redirect</a></li>
 		</ul>
 	</nav>
+	
+	<div class="container mt-4">

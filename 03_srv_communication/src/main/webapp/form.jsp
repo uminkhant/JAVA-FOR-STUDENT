@@ -10,5 +10,12 @@
 		<label for="">Age</label><input type="number" class="form-control"
 			name="age" />
 	</div>
+	<br />
 	<button type="submit" class="btn btn-primary">Send</button>
 </form>
+
+<% String customer=(String)request.getAttribute("customer"); %>
+<% if(null!=customer){ %>
+
+<p class="text-success"><%=customer %></p>
+<%} %>

@@ -28,9 +28,13 @@ public class RedirectServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		var name = req.getParameter("name");
+		var age = req.getParameter("age");
+
+		System.out.println("Customer name is %s and age is %s".formatted(name, age));
 		
-		resp.sendRedirect(getServletContext().getContextPath());
-		
+	 resp.sendRedirect(getServletContext().getContextPath().concat("/redirect"));
+
 	}
 
 }
