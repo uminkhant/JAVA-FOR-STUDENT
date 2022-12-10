@@ -22,7 +22,7 @@
 
 	<div class="container mt-4">
 		<p class="text-danger fs-3">Hello Servlet</p>
-		<form action="test" class="form" method="post">
+		<form action="student" class="form" method="post">
 			<div class="form-group mb-2">
 				<label for="">Student Name :</label> <input type="text"
 					class="form-control" name="st_name" />
