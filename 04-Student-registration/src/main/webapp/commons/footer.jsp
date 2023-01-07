@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<p>Footer</p>
-</body>
-</html>
+
+<div class="d-flex justify-content-between h-70 background-color">
+	<div class="p-5 ">
+		<p class=txt-header-style>CopyRight&copy;JDC</p>
+	</div>
+	<div class="p-5 ">
+		<p class="txt-header-style">Java Developer Class</p>
+	</div>
+</div>

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.background-color {
+	background-color: #37517E !important;
+}
+
+.txt-header-style {
+	color: #ffffff !important;
+	font-weight: bold;
+	font-family: 'Roboto', sans-serif;
+}
+
+.txt-header-style:hover, .txt-header-style:active {
+	color: #47B2E4 !important;
+}
+
+.txt-body-style {
+	color: #47B2E4 !important;
+}
+
+.date-picker {
+	color: #47B2E4 !important;
+}
+
+.btn-style {
+	border-radius: 5rem;
+	boder: none;
+	padding: 5px;
+	color: white !important;
+	text-align: center;
+	background-color: #47B2E4 !important;
+}
+
+.btn-style:hover {
+	background-color: white !important;
+	color: #47B2E4 !important;
+	border-color: #47B2E4 !important;
+}
