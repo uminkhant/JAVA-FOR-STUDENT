@@ -34,7 +34,9 @@
 
 <c:url var="students" value="/list-students"></c:url>
 <c:url var="courses" value="/list-courses"></c:url>
-<c:url var="attendence" value="/list-attendence"></c:url>
+<c:url var="classroom" value="/list-classrooms"></c:url>
+
+<c:url var="attendance" value="/add-attendance"></c:url>
 <c:url var="about" value="/about"></c:url>
 <c:url var="home" value="/home"></c:url>
 
@@ -55,6 +57,8 @@
 							class="txt-header-style">Students</span></a></li>
 					<li class="nav-item"><a href="${courses }" class="nav-link "><span
 							class="txt-header-style">Courses </span> </a></li>
+							<li class="nav-item"><a href="${classroom }" class="nav-link "><span
+							class="txt-header-style">Classroom </span> </a></li>
 					<li class="nav-item"><a href="${attendance }"
 						class="nav-link txt-header-style"><span
 							class="txt-header-style">Attendance</span></a></li>

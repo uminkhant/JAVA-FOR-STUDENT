@@ -26,24 +26,12 @@ public class CourseServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//String sql = "select * from user_tbl";
-		String sql="insert into stu_tbl values(?,?)";
-		try (Connection con = getConnector(); PreparedStatement stmt = con.prepareStatement(sql)) {
-			
-			stmt.setInt(1, 2);
-			stmt.setString(2, "hi");
-			stmt.executeUpdate();
-			
-//			var rs=stmt.executeQuery();
-//			
-//			while(rs.next()) {
-//				System.out.println(rs.getInt(1));
-//			}
-			
-			System.out.println("successfully save mkt");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		String courseName = req.getParameter("");
+		int fees = Integer.parseInt(req.getParameter(""));
+		String des = req.getParameter("");
+		
+		
 	}
 
 }

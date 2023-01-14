@@ -1,4 +1,4 @@
-package com.jdc.mkt;
+package com.jdc.mkt.comon.registration;
 
 import java.io.IOException;
 
@@ -8,23 +8,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {
-		
-		"/admin","/member"
-})
-public class HomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/list-classrooms","/add-classroom","/save-classroom"})
+public class ClassRoomServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		if(req.getServletPath().equals("/logout")) {
-			
-			req.getSession().invalidate();
-		}
-		
-		req.getRequestDispatcher("home.jsp").forward(req, resp);
+		req.getRequestDispatcher("/header").include(req, resp);
+		req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
+		req.getRequestDispatcher("/footer").include(req, resp);
 	}
 
 }

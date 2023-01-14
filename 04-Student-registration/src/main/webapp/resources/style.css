@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .background-color {
-	background-color: #37517E !important;
+	background-color: #6EAFD7 !important;
 }
 
 .txt-header-style {
@@ -10,15 +10,15 @@
 }
 
 .txt-header-style:hover, .txt-header-style:active {
-	color: #47B2E4 !important;
+	color: #CDD1D9 !important;
 }
 
 .txt-body-style {
-	color: #47B2E4 !important;
+	color: #6EAFD7 !important;
 }
 
 .date-picker {
-	color: #47B2E4 !important;
+	color: #CDD1D9 !important;
 }
 
 .btn-style {

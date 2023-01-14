@@ -30,8 +30,10 @@
 
 			</div>
 			<div class="col-md-4 ">
-				<label class="txt-body-style" for="de">Date :</label> <input
+			<div class="d-flex justify-content-end">
+				<label class="txt-body-style" for="de">Date :&nbsp;</label> <input
 					class="date-picker" id="de" type="date" name="date" />
+			</div>
 			</div>
 		</div>
 
@@ -59,7 +61,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="justify-content-end mb-2">
+			<div class="d-flex justify-content-end mb-2">
 				<button class="btn btn-style">Save Attendance</button>
 			</div>
 		</form>

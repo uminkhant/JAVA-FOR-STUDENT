@@ -13,17 +13,7 @@
 			<div class="card-body txt-style">
 				<form action="${saveCourse }" class="form" method="post">
 
-					<div class="d-flex justify-content-end mb-3">
-						<div class="me-3">
-							<label class="txt-body-style" for="ds">Course Duration from :</label> <input id="ds"
-								type="date" name="startDt" class="date-picker" />
-
-						</div>
-						<div>
-							<label class="txt-body-style" for="de">to :</label> <input class="date-picker" id="de"
-								type="date" name="endDt" />
-						</div>
-					</div>
+					 
 					<div class="form-group mb-3">
 						<label class="txt-body-style" for="course">Course Name :</label> <input id="course"
 							type="text" class="form-control" name="cName" />
