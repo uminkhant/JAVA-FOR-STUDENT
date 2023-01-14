@@ -9,17 +9,13 @@ public class Student {
 
 	private Integer id;
 	private String name;
-	private int age;
 	private String phone;
 	private String email;
+	private boolean isActive;
 	
 	private Address address;
 	
-	
-	public Student() {
-		super();
-	}
-	
+
 	
 	
 	

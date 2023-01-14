@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/list-classrooms","/add-classroom","/save-classroom"})
+@WebServlet(urlPatterns = {"/list-classrooms","/admin/add-classroom","/save-classroom"})
 public class ClassRoomServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -17,7 +17,12 @@ public class ClassRoomServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.getRequestDispatcher("/header").include(req, resp);
-		req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
+		if(req.getServletPath().startsWith("/add")) {
+			req.getRequestDispatcher("/admin"+req.getServletPath().concat(".jsp")).include(req, resp);
+		}else {
+			req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
+		}
+		
 		req.getRequestDispatcher("/footer").include(req, resp);
 	}
 

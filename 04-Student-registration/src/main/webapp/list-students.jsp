@@ -6,26 +6,25 @@
 
 <body>
 
-	<c:url var="addStudent" value="/add-student"></c:url>
+	<c:url var="addStudent" value="/admin/add-student"></c:url>
 	<div class="container mt-4">
 
 		<div class="card">
 			<div class="card-header txt-body-style">
-				<div class="card-title ">
-					<div class="row">
-						<div class="col-md-9 ">
-							<h3>
+				<div class="card-title d-flex justify-content-between ">
+						<div class="mt-2" >
+							<h5>
 								Student List
-							</h3>
+							</h5>
 						</div>
-						<div class="col-md-3 mt-2 nav-item">
+						<div >
 						<a class="txt-body-style nav-link " href="${addStudent }"><i class="bi bi-pencil-square"></i>&nbsp;Add New Student</a>
 						</div>
 					</div>
 
 				</div>
 
-			</div>
+			
 		</div>
 
 		<div class="row mt-2 mb-2">
@@ -57,9 +56,10 @@
 					<th>Class Room</th>
 					<th>Email</th>
 					<th>Contact</th>
-					<th>Street</th>
 					<th>City</th>
 					<th>Township</th>
+					<th>Street</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -67,17 +67,21 @@
 					<td>1</td>
 					<td>Aung Aung</td>
 					<td>bootcamp-3</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>aung@gmail.com</td>
+					<td>09-3242242</td>
+					<td>MDY</td>
+					<td>Maharmyay</td>
+					<td>35 street,mahar nwezin yard</td>
+					<td>
+					<div class="d-flex justify-content-end mb-2">
+							<button class="btn btn-style me-2">edit</button>
+							<button class="btn btn-style">delete</button>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<div class="justify-content-end mb-2">
-			<button class="btn btn-style">Save Attendance</button>
-		</div>
+		
 
 	</div>
 </body>

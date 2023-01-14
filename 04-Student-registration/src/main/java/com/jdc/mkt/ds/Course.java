@@ -10,4 +10,5 @@ public class Course {
 	private String name;
 	private int fees;
 	private String description;
+	private boolean isActive;
 }

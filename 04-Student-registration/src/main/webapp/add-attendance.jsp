@@ -9,7 +9,11 @@
 
 		<div class="card">
 			<div class="card-header txt-body-style">
-				<div class="card-title "><h3><i class="bi bi-pencil-square"></i>&nbsp;Attendance </h3></div>
+				<div class="card-title ">
+					<h5>
+						<i class="bi bi-pencil-square"></i>&nbsp;Attendance
+					</h5>
+				</div>
 			</div>
 		</div>
 
@@ -30,10 +34,10 @@
 
 			</div>
 			<div class="col-md-4 ">
-			<div class="d-flex justify-content-end">
-				<label class="txt-body-style" for="de">Date :&nbsp;</label> <input
-					class="date-picker" id="de" type="date" name="date" />
-			</div>
+				<div class="d-flex justify-content-end">
+					<label class="txt-body-style" for="de">Date :&nbsp;</label> <input
+						class="date-picker" id="de" type="date" name="date" />
+				</div>
 			</div>
 		</div>
 
@@ -54,10 +58,8 @@
 						<td>1</td>
 						<td>Aung Aung</td>
 						<td>bootcamp-3</td>
-						<td><input class="mx-4" type="radio" name="attend"
-							value="1" /></td>
-						<td><input class="mx-4" type="radio" name="attend"
-							value="0" /></td>
+						<td><input class="mx-4" type="radio" name="attend" value="1" /></td>
+						<td><input class="mx-4" type="radio" name="attend" value="0" /></td>
 					</tr>
 				</tbody>
 			</table>

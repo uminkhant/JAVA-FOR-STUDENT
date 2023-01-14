@@ -14,23 +14,25 @@
 				</div>
 			</div>
 			<div class="card-body txt-style">
+			<div class="d-flex justify-content-end">
+				<label class="txt-body-style " for="de">Date from :&nbsp;</label> <input
+					class="date-picker " id="de" type="date" name="date" />
+					<label class="txt-body-style mr-2" for="de"> &nbsp;To :&nbsp;</label> <input
+					class="date-picker" id="de" type="date" name="date" />
+			</div>
 				<form action="${saveClassroom }" class="form" method="post">
 
 					<div class="form-group mb-3">
-						<label for="course">Course Name :</label> <input id="course"
-							type="text" class="form-control" name="cName" />
+						<label for="room">Room Name :</label> <input id="room"
+							type="text" class="form-control" name="room" />
 					</div>
-					<div class="form-group mb-3">
-						<label for="fees">Fees :</label> <input id="fees" type="number"
-							class="form-control" name="fees" />
-
-					</div>
+					
 					<div class="form-group mb-3">
 						<label for="du">Durations :</label> <input id="du" type="text"
 							class="form-control" name="durations" />
 					</div>
 
-					<button class="btn w-100 mt-2 btn-style "><i class="bi bi-save-fill"></i>&nbsp;Save</button>
+					<button class="btn w-100 mt-2 btn-style "><i class="bi bi-save-fill"></i>&nbsp;Save Room</button>
 				</form>
 			</div>
 		</div>

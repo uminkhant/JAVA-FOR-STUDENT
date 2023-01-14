@@ -34,7 +34,7 @@
 						Course Content</button>
 
 					<button class="btn w-100 mt-2 btn-style ">
-						<i class="bi bi-save-fill"></i>&nbsp;Save
+						<i class="bi bi-save-fill"></i>&nbsp;Save Course
 					</button>
 				</form>
 			</div>
