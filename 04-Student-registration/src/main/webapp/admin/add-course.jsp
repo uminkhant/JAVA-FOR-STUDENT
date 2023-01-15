@@ -29,9 +29,7 @@
 							id="des" style="height: 100px"></textarea>
 						<label class="txt-body-style" for="des">Description</label>
 					</div>
-					<button type="button" class="btn w-100 mt-2 btn-style"
-						data-bs-toggle="modal" data-bs-target="#exampleModal">Add
-						Course Content</button>
+					
 
 					<button class="btn w-100 mt-2 btn-style ">
 						<i class="bi bi-save-fill"></i>&nbsp;Save Course
@@ -42,29 +40,6 @@
 	</div>
 
 
-	<!--Add Course Contents -->
-
-
-	<!-- Modal -->
-	<div class="modal fade" id="exampleModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Add Course
-						Content</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">...</div>
-				<div class="modal-footer">
-					<button type="reset" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save
-						Contents</button>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 </body>

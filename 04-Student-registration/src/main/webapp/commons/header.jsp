@@ -36,7 +36,7 @@
 <c:url var="courses" value="/list-courses"></c:url>
 <c:url var="classroom" value="/list-classrooms"></c:url>
 <c:url var="members" value="/list-members"></c:url>
-
+<c:url var="logout" value="/logout"></c:url>
 <c:url var="attendance" value="/add-attendance"></c:url>
 <c:url var="home" value="/home"></c:url>
 
@@ -68,7 +68,7 @@
 				</ul>
 				<ul class="navbar-nav ">
 
-					<li class="nav-item"><a href="#" class="nav-link "><span
+					<li class="nav-item"><a href="#" class="nav-link " data-bs-toggle="modal" data-bs-target="#exampleModal"><span
 							class="txt-header-style"><i class="bi bi-person-fill"></i>
 								<c:if test="${ not empty userName  }">
 								<c:out value="${userName }"></c:out>
@@ -82,6 +82,27 @@
 	</nav>
 
 
+<!--Add Course Contents -->
 
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title txt-body-style" id="exampleModalLabel">Logout</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body ">Do you want to logout user !</div>
+				<div class="modal-footer">
+					
+					<a href="${logout }" class="btn btn-style">Logout</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

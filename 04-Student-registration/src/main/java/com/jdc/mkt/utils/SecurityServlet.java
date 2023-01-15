@@ -24,19 +24,20 @@ public class SecurityServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		System.out.println("login : ");
 		switch (req.getServletPath()) {
 		case "/login":
 
 			String loginId = req.getParameter("loginId");
 			String pass = req.getParameter("password");
-
+			System.out.println("login : "+loginId);
 			req.login(loginId, pass);
 			
 			var session = req.getSession();
 			session.setAttribute("loginUser", req.getUserPrincipal());
 			session.setAttribute("userName", req.getUserPrincipal().getName());
 			session.setAttribute("isAdmin", req.isUserInRole("ADMIN"));
-
+			
 			break;
 		case "/logout":
 			req.logout();
