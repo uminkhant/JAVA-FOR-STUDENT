@@ -70,7 +70,12 @@
 
 					<li class="nav-item"><a href="#" class="nav-link "><span
 							class="txt-header-style"><i class="bi bi-person-fill"></i>
-								User</span> </a></li>
+								<c:if test="${ not empty userName  }">
+								<c:out value="${userName }"></c:out>
+								</c:if>
+								
+								
+								</span> </a></li>
 				</ul>
 			</div>
 		</div>

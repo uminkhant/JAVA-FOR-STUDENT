@@ -29,6 +29,7 @@ public class MemberServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/header").include(req, resp);
+		
 		if(req.getServletPath().startsWith("/add")) {
 			req.getRequestDispatcher("/admin"+req.getServletPath().concat(".jsp")).include(req, resp);
 		}else {
