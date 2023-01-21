@@ -32,12 +32,12 @@
 <title>Student Registration</title>
 </head>
 
-<c:url var="students" value="/list-students"></c:url>
-<c:url var="courses" value="/list-courses"></c:url>
-<c:url var="classroom" value="/list-classrooms"></c:url>
-<c:url var="members" value="/list-members"></c:url>
+<c:url var="students" value="/members/list-students"></c:url>
+<c:url var="courses" value="/members/list-courses"></c:url>
+<c:url var="classroom" value="/members/list-classrooms"></c:url>
+<c:url var="members" value="/members/list-members"></c:url>
 <c:url var="logout" value="/logout"></c:url>
-<c:url var="attendance" value="/add-attendance"></c:url>
+<c:url var="attendance" value="/members/list-attendance"></c:url>
 <c:url var="home" value="/home"></c:url>
 
 <body>

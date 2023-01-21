@@ -8,16 +8,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/","/home"})
-public class RegistrationServlet extends HttpServlet{
+@WebServlet(urlPatterns = "/")
+public class WelcomeServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("commons/header.jsp").include(req, resp);
-		req.getRequestDispatcher("add-attendance.jsp").include(req, resp);
-		req.getRequestDispatcher("commons/footer.jsp").include(req, resp);
+		req.getRequestDispatcher("/header").include(req, resp);
+		req.getRequestDispatcher("/home.jsp").include(req, resp);
+		req.getRequestDispatcher("/footer").include(req, resp);
 	}
 
 }

@@ -15,39 +15,41 @@ public class SecurityServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("commons/header.jsp").include(req, resp);
-		req.getRequestDispatcher("security/" + req.getServletPath().concat(".jsp")).include(req, resp);
-		req.getRequestDispatcher("commons/footer.jsp").include(req, resp);
+
+		
+		if (req.getServletPath().equals("/login")) {
+			req.getRequestDispatcher("commons/header.jsp").include(req, resp);
+			req.getRequestDispatcher("/security" + req.getServletPath().concat(".jsp")).include(req, resp);
+			req.getRequestDispatcher("commons/footer.jsp").include(req, resp);
+		} else {
+			req.logout();
+			req.getSession().invalidate();
+			resp.sendRedirect(req.getContextPath());
+		}
 
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		System.out.println("login : ");
-		switch (req.getServletPath()) {
-		case "/login":
+		try {
 
 			String loginId = req.getParameter("loginId");
 			String pass = req.getParameter("password");
-			System.out.println("login : "+loginId);
 			req.login(loginId, pass);
-			
+
 			var session = req.getSession();
 			session.setAttribute("loginUser", req.getUserPrincipal());
 			session.setAttribute("userName", req.getUserPrincipal().getName());
 			session.setAttribute("isAdmin", req.isUserInRole("ADMIN"));
-			
-			break;
-		case "/logout":
-			req.logout();
-			req.getSession().invalidate();
-			break;
-		default:
-			break;
-		}
 
-		resp.sendRedirect(req.getContextPath());
+			resp.sendRedirect(req.getContextPath());
+
+		} catch (Exception e) {
+
+			resp.sendRedirect(req.getContextPath().concat("/error"));
+
+		}
 
 	}
 

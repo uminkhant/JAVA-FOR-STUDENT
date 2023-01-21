@@ -6,7 +6,7 @@
 
 <body>
 	<c:url var="saveMember" value="/save-member"></c:url>
-	<div class="container mt-4 p-5">
+	<div class="container mt-2 p-2 w-50">
 		<div class="card ">
 			<div class="card-header background-color txt-header-style ">
 				<div class="card-title">

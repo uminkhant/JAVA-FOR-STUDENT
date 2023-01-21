@@ -1,7 +1,9 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <body>
 	<c:url var="saveCourse" value="/save-course"></c:url>
-	<div class="container mt-4 p-5">
+	<div class="container mt-2 p-2 w-50">
 		<div class="card ">
 			<div class="card-header  txt-body-style ">
 				<div class="card-title">

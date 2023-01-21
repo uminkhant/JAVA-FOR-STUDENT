@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 .background-color {
 	background-color: #6EAFD7 !important;
 }
@@ -15,6 +16,7 @@
 
 .txt-body-style {
 	color: #6EAFD7 !important;
+	text-decoration: none;
 }
 
 .date-picker {
@@ -23,7 +25,7 @@
 
 .btn-style {
 	border-radius: 5rem;
-	boder: none;
+	border: none;
 	padding: 5px;
 	color: white !important;
 	text-align: center;
@@ -34,4 +36,9 @@
 	background-color: white !important;
 	color: #47B2E4 !important;
 	border-color: #47B2E4 !important;
+}
+
+.footer-bs {
+	
+	
 }

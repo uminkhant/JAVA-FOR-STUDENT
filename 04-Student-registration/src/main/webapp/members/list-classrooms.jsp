@@ -32,7 +32,6 @@
 				<tr>
 					<th>No.</th>
 					<th>Room Name</th>
-					<th>Fees</th>
 					<th>Durations</th>
 					<th>Start Date</th>
 					<th>End Date</th>
@@ -40,20 +39,30 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>javaBasic(2022-08)</td>
-					<td>600000</td>
-					<td>4</td>
-					<td></td>
-					<td></td>
-					<td>
-						<div class="d-flex justify-content-end mb-2">
-							<button class="btn btn-style me-2">edit</button>
-							<button class="btn btn-style">delete</button>
-						</div>
-					</td>
-				</tr>
+				<c:choose>
+					<c:when test="${classrooms!=null }">
+						<c:forEach var="l" items="${classrooms }" varStatus="loop">
+							<tr>
+								<td>${loop.index+1 }</td>
+								<td>${l.getName() }</td>
+								<td>${l.getDurations() }</td>
+								<td>${l.getStartDate() }</td>
+								<td>${l.getEndDate() }</td>
+								<td>
+									<div class="d-flex justify-content-end mb-2">
+										<button class="btn btn-style me-2">edit</button>
+										<button class="btn btn-style">delete</button>
+									</div>
+								</td>
+							</tr>
+						</c:forEach>
+
+					</c:when>
+					<c:otherwise>
+						<p class="txt-body-style">There is no classrooms</p>
+					</c:otherwise>
+				</c:choose>
+
 			</tbody>
 		</table>
 

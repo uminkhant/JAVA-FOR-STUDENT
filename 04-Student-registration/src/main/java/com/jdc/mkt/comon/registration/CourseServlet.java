@@ -11,21 +11,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import static com.jdc.mkt.utils.ConnectionManager.getConnector;
 
-@WebServlet(value = { "/save-course", "/list-courses", "/admin/add-course" })
+@WebServlet(value = { "/save-course", "/members/list-courses", "/admin/add-course" })
 public class CourseServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.getRequestDispatcher("/header").include(req, resp);
 
-		if (req.getServletPath().startsWith("/add")) {
-			req.getRequestDispatcher("/admin" + req.getServletPath().concat(".jsp")).include(req, resp);
-		} else {
-			req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
-		}
+		req.getRequestDispatcher("/header").include(req, resp);
+		req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
 		req.getRequestDispatcher("/footer").include(req, resp);
 	}
 

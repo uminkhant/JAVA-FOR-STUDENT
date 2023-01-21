@@ -10,7 +10,7 @@
 		<fieldset class="border rounded-3 p-3">
 			<legend  class="float-none w-auto px-3"><span
 							class="txt-body-style"><i class="bi bi-person-fill"></i>
-								Login </span> </a></li> </legend>
+								Login </span>  </legend>
 
 
 			<form action="${login }" class="form" method="post">

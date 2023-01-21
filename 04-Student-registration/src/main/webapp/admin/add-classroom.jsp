@@ -6,7 +6,7 @@
 
 <body>
 	<c:url var="saveClassroom" value="/save-classroom"></c:url>
-	<div class="container mt-4 p-5">
+	<div class="container mt-4 p-2 w-50">
 		<div class="card ">
 			<div class="card-header background-color txt-header-style ">
 				<div class="card-title">

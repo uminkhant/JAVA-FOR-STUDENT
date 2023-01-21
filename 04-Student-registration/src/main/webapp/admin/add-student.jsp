@@ -6,7 +6,7 @@
 
 <body>
 	<c:url var="saveStudent" value="/save-student"></c:url>
-	<div class="container mt-4 p-5">
+	<div class="container mt-2 p-2 w-50">
 		<div class="card ">
 			<div class="card-header background-color txt-header-style ">
 				<div class="card-title">
@@ -18,9 +18,21 @@
 			<div class="card-body txt-style">
 				<form action="${saveStudent }" class="form" method="post">
 
+					<c:if test="${classrooms !=null }">
+
+						<select name="room" class="btn btn-style p-2">
+
+							<c:forEach var="cr" items="${classrooms }">
+								<option>${cr.getName() }</option>
+							</c:forEach>
+						</select>
+
+					</c:if>
+
+
 					<div class="form-group mb-3">
 						<label for="stName">Student Name :</label> <input id="stName"
-							type="text" class="form-control" name="stName" />
+							type="text" class="form-control" name="name" />
 					</div>
 					<div class="form-group mb-3">
 						<label for="phone">Phone :</label> <input id="phone" type="text"
@@ -32,16 +44,15 @@
 					</div>
 
 
-						<fieldset class="border rounded-3 p-3">
-							<legend class="float-none w-auto px-3">Address</legend>
-							<label for="phone">Street :</label> <input id="street" type="text"
-							class="form-control" name="street" />
-							<label for="town">township :</label> <input id="town" type="text"
-							class="form-control" name="township" />
-							<label for="city">city :</label> <input id="city" type="text"
-							class="form-control" name="city" />
-						</fieldset>
-				
+					<fieldset class="border rounded-3 p-3">
+						<legend class="float-none w-auto px-3">Address</legend>
+						<label for="phone">Street :</label> <input id="street" type="text"
+							class="form-control" name="street" /> <label for="town">township
+							:</label> <input id="town" type="text" class="form-control"
+							name="township" /> <label for="city">city :</label> <input
+							id="city" type="text" class="form-control" name="city" />
+					</fieldset>
+
 
 					<button class="btn w-100 mt-2 btn-style ">
 						<i class="bi bi-save-fill"></i>&nbsp;Save Student

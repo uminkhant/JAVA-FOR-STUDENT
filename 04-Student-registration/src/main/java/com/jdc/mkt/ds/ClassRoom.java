@@ -15,9 +15,12 @@ public class ClassRoom {
 	private LocalDate endDate;
 	private boolean isActive;
 	
+	
 	public ClassRoom() {
 		super();
 	}
+	
+	
 	
 	
 	public ClassRoom(String name, int durations, LocalDate startDate, LocalDate endDate) {
@@ -26,6 +29,14 @@ public class ClassRoom {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		
+	}
+
+
+
+
+	public ClassRoom(Integer id) {
+		super();
+		this.id = id;
 	}
 
 
