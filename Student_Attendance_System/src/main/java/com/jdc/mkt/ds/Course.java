@@ -7,11 +7,8 @@ import lombok.Setter;
 public class Course {
 
 	private Integer id;
-	private String name;
-	private int fees;
-	
+	private String name;	
 	private String description;
-	private ClassRoom classRoom;
 	private boolean isActive;
 	
 }

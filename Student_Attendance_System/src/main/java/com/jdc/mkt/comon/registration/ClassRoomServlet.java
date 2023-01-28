@@ -43,8 +43,8 @@ public class ClassRoomServlet extends HttpServlet {
 		LocalDate st_date = LocalDate.parse(req.getParameter("start_date"));
 		LocalDate end_date = LocalDate.parse(req.getParameter("end_date"));
 
-		ClassRoom classRoom = new ClassRoom(room, duration, st_date, end_date);
-		classRoomService.saveClassRoom(classRoom);
+		//ClassRoom classRoom = new ClassRoom(room, duration, st_date, end_date);
+		//classRoomService.saveClassRoom(classRoom);
 
 		resp.sendRedirect(req.getContextPath());
 	}

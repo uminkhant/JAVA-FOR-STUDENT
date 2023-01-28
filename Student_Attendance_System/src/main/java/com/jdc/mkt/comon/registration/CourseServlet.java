@@ -1,6 +1,7 @@
 package com.jdc.mkt.comon.registration;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.jdc.mkt.ds.ClassRoom;
 import com.jdc.mkt.ds.Course;
@@ -13,8 +14,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(value = { "/save-course", "/members/list-courses", "/admin/add-course", "/admin/edit-course",
-		"/admin/delete-course" })
+@WebServlet(value = { "/admin/save-course", "/admin/update-course", "/members/list-courses", "/admin/add-course",
+		"/admin/edit-course", "/admin/delete-course" })
 public class CourseServlet extends HttpServlet {
 
 	private CourseService courseService;
@@ -29,7 +30,10 @@ public class CourseServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		req.setAttribute("courses", courseService.getCourses());
+		List<Course> list = courseService.getCourses(0, null);
+		req.setAttribute("courses", list);
+		String str = req.getParameter("id");
+		int course_id = convertToInt(str);
 
 		switch (req.getServletPath()) {
 		case "/members/list-courses":
@@ -40,14 +44,13 @@ public class CourseServlet extends HttpServlet {
 			req.getRequestDispatcher("/footer").include(req, resp);
 			break;
 		case "/admin/edit-course":
-			req.getRequestDispatcher(req.getContextPath().concat("/admin/add-course")).forward(req, resp);
+			Course course = courseService.getCourses(course_id, null).stream().findFirst().orElse(null);
+			req.setAttribute("course", course);
+
+			req.getRequestDispatcher("/admin/add-course").forward(req, resp);
 			break;
 		case "/admin/delete-course":
-			var id =Integer.parseInt(req.getParameter("id"));
-			Course c = new Course();
-			c.setId(id);
-			c.setActive(false);
-			courseService.updateCourse(c);
+			courseService.deleteCourse(course_id);
 			resp.sendRedirect(req.getContextPath().concat("/members/list-courses"));
 			break;
 
@@ -59,20 +62,29 @@ public class CourseServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String courseName = req.getParameter("name");
-		int fees = Integer.parseInt(req.getParameter("fees"));
 		String des = req.getParameter("des");
-		String c = req.getParameter("room");
+		String str = req.getParameter("id");
+		int id = convertToInt(str);
 
-		int id = c == null ? 0 : Integer.parseInt(c);
 		Course course = new Course();
 		course.setName(courseName);
-		course.setFees(fees);
 		course.setActive(true);
 		course.setDescription(des);
-		course.setClassRoom(new ClassRoom(id));
-		courseService.saveCourse(course);
+
+		if (id > 0) {
+			course.setId(id);
+			System.out.println("update : course"+id);
+			courseService.updateCourse(course);
+		}else {
+			System.out.println("save");
+			courseService.saveCourse(course);
+		}
 
 		resp.sendRedirect(req.getContextPath().concat("/members/list-courses"));
+	}
+
+	private int convertToInt(String str) {
+		return str == null ? 0 : Integer.parseInt(str);
 	}
 
 }

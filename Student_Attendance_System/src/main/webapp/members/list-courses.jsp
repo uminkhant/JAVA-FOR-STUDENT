@@ -33,8 +33,6 @@
 				<tr>
 					<th>No.</th>
 					<th>Course</th>
-					<th>Class room</th>
-					<th>Fees</th>
 					<th>Description</th>
 					<th></th>
 				</tr>
@@ -49,12 +47,10 @@
 							<tr>
 								<td>${l.index+1 }</td>
 								<td>${co.getName() }</td>
-								<td>${co.getClassRoom().getName() }</td>
-								<td>${co.getFees() }</td>
 								<td>${co.getDescription() }</td>
 								<td>
 									<div class="d-flex justify-content-end mb-2">
-										<a class="btn btn-style me-2" href="${editCourse }">Edit</a>
+										<a class="btn btn-style me-2" href="${editCourse }?id=${co.getId()}">Edit</a>
 										 <a class="btn btn-style me-2" href="${deleteCourse }?id=${co.getId()}">Delete</a>
 
 									</div>

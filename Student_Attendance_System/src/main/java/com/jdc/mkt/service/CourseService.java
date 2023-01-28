@@ -7,7 +7,8 @@ import com.jdc.mkt.ds.Course;
 public interface CourseService {
 
 	void saveCourse(Course course);
-	List<Course>getCourses();
+	List<Course>getCourses(int id,String name);
 	void updateCourse(Course course);
+	void deleteCourse(int id);
 	
 }

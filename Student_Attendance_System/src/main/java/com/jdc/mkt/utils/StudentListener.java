@@ -20,8 +20,8 @@ public class StudentListener implements ServletRequestListener {
 		classRoomService = new ClassRoomServiceImpl();
 		studentService = new StudentServiceImpl();
 		
-		sre.getServletContext().setAttribute("students", studentService.getStudents(0, null, null));
-		sre.getServletContext().setAttribute("classrooms", classRoomService.getClassRooms(0, null));
+		//sre.getServletContext().setAttribute("students", studentService.getStudents(0, null, null));
+		//sre.getServletContext().setAttribute("classrooms", classRoomService.getClassRooms(0, null));
 		
 	}
 
