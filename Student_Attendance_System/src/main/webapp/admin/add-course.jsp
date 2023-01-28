@@ -19,7 +19,7 @@
 					<c:when test="${course != null }">
 						<form action="${updateCourse }" class="form" method="post">
 						
-							<input type="text" value="${course.getId() }" name ="id"/>
+							<input type="hidden" value="${course.getId() }" name ="id"/>
 						
 							<div class="form-group mb-3">
 								<label class="txt-body-style" for="course">Course Name :</label>

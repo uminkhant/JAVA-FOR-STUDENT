@@ -7,6 +7,9 @@
 <body>
 
 	<c:url var="addClassroom" value="/admin/add-classroom"></c:url>
+	<c:url var="editClassroom" value="/admin/edit-classroom"></c:url>
+	<c:url var="deleteClassroom" value="/admin/delete-classroom"></c:url>
+	
 	<div class="container mt-4">
 
 		<div class="card">
@@ -32,6 +35,7 @@
 				<tr>
 					<th>No.</th>
 					<th>Room Name</th>
+					<th>Fees</th>
 					<th>Durations</th>
 					<th>Start Date</th>
 					<th>End Date</th>
@@ -45,13 +49,14 @@
 							<tr>
 								<td>${loop.index+1 }</td>
 								<td>${l.getName() }</td>
+								<td>${l.getFees() }</td>
 								<td>${l.getDurations() }</td>
 								<td>${l.getStartDate() }</td>
 								<td>${l.getEndDate() }</td>
 								<td>
 									<div class="d-flex justify-content-end mb-2">
-										<button class="btn btn-style me-2">edit</button>
-										<button class="btn btn-style">delete</button>
+										<a class="btn btn-style me-2" href="${editClassroom }?id=${l.getId()}">edit</a>
+										<a class="btn btn-style" href="${deleteClassroom }?id=${l.getId()}">delete</a>
 									</div>
 								</td>
 							</tr>

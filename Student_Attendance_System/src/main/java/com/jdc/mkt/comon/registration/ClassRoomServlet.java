@@ -13,7 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/members/list-classrooms", "/admin/add-classroom", "/save-classroom" })
+@WebServlet(urlPatterns = { "/members/list-classrooms", "/admin/add-classroom", "/admin/save-classroom",
+		"/admin/edit-classroom", "/admin/delete-classroom" })
 public class ClassRoomServlet extends HttpServlet {
 
 	private ClassRoomService classRoomService;
@@ -27,26 +28,62 @@ public class ClassRoomServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		req.setAttribute("classrooms", classRoomService.getClassRooms(0, null));
-		
-		req.getRequestDispatcher("/header").include(req, resp);
-		req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
-		req.getRequestDispatcher("/footer").include(req, resp);
+		int id = convertToInt(req.getParameter("id"));
+
+		switch (req.getServletPath()) {
+		case "/members/list-classrooms":
+		case "/admin/add-classroom":
+			req.getRequestDispatcher("/header").include(req, resp);
+			req.getRequestDispatcher(req.getServletPath().concat(".jsp")).include(req, resp);
+			req.getRequestDispatcher("/footer").include(req, resp);
+			break;
+		case "/admin/edit-classroom":
+			ClassRoom cr = classRoomService.getClassRooms(id, null).stream().findFirst().orElse(null);
+			req.setAttribute("classroom", cr);
+			req.getRequestDispatcher("/admin/add-classroom").forward(req, resp);
+			break;
+		case "/admin/delete-classroom":
+			classRoomService.deleteClassRoom(id);
+			resp.sendRedirect(req.getContextPath().concat("/members/list-classrooms"));
+			break;
+
+		}
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String room = req.getParameter("room");
-		int duration = Integer.parseInt(req.getParameter("durations"));
+		int duration = convertToInt(req.getParameter("durations"));
+		int fees = convertToInt(req.getParameter("fee"));
+		int id = convertToInt(req.getParameter("id"));
+
 		LocalDate st_date = LocalDate.parse(req.getParameter("start_date"));
 		LocalDate end_date = LocalDate.parse(req.getParameter("end_date"));
 
-		//ClassRoom classRoom = new ClassRoom(room, duration, st_date, end_date);
-		//classRoomService.saveClassRoom(classRoom);
+		ClassRoom cl = new ClassRoom();
+		cl.setName(room);
+		cl.setFees(fees);
+		cl.setDurations(duration);
+		cl.setStartDate(st_date);
+		cl.setEndDate(end_date);
+		cl.setActive(true);
+		
+		if (id > 0) {
+			cl.setId(id);
+			classRoomService.updateClassRoom(cl);
+		} else {
+			classRoomService.saveClassRoom(cl);
+		}
 
 		resp.sendRedirect(req.getContextPath());
+	}
+
+	private int convertToInt(String str) {
+		return null == str ? 0 : Integer.parseInt(str);
 	}
 
 }
